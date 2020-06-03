@@ -11,10 +11,8 @@ namespace Groove_Coaster_Converter
 {
     public static class Program
     {
-
+        public static bool darkUI = true;
         public static string title = "Groove Coaster Converter";
-        private static string author = "by CyberKevin";
-        static readonly string version = "0.2.1";
         public static readonly string songFolder = @"songs";
         public static readonly string conversionFolder = @"songs\Converted";
         public static bool debug = false;

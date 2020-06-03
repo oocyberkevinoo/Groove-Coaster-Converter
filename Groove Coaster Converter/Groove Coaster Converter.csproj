@@ -73,6 +73,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Class\DarkUI.cs" />
     <Compile Include="Class\MessageHandler.cs" />
     <Compile Include="Class\Song.cs" />
     <Compile Include="Form1.cs">

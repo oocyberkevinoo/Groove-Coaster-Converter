@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Groove_Coaster_Converter.Class;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,10 +13,14 @@ namespace Groove_Coaster_Converter
 {
     public partial class Form_About : Form
     {
+
+
+
         public Form_About()
         {
             InitializeComponent();
         }
+
 
         private void link_Twitter_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
@@ -27,6 +32,11 @@ namespace Groove_Coaster_Converter
         {
             link_Github.LinkVisited = true;
             System.Diagnostics.Process.Start("https://github.com/oocyberkevinoo/Groove-Coaster-Converter");
+        }
+
+        private void Form_About_Shown(object sender, EventArgs e)
+        {
+            DarkUI.Dark(this);
         }
     }
 }

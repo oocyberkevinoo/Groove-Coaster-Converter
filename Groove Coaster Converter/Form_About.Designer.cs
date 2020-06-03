@@ -56,7 +56,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(209, 100);
             this.label2.TabIndex = 0;
-            this.label2.Text = "by Cyberkevin\r\nVersion Alpha 0.2.2\r\n\r\nThis software is still in Alpha.\r\nPlease re" +
+            this.label2.Text = "by Cyberkevin\r\nVersion Alpha 0.2.3\r\n\r\nThis software is still in Alpha.\r\nPlease re" +
     "port any issue.";
             this.label2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
@@ -101,6 +101,7 @@
             this.Name = "Form_About";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "About";
+            this.Shown += new System.EventHandler(this.Form_About_Shown);
             this.ResumeLayout(false);
             this.PerformLayout();
 

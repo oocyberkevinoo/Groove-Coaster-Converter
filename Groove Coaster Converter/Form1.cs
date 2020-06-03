@@ -16,7 +16,8 @@ namespace Groove_Coaster_Converter
 {
     public partial class Form_GCC : Form
     {
-        public Form_About form_about;
+        public bool dark = false;
+        private Form_About form_about = new Form_About();
         public ushort total_entries;
         private List<Song> songs = new List<Song>();
         private int song_id;
@@ -239,84 +240,11 @@ namespace Groove_Coaster_Converter
 
         private void checkBox_DarkUI_CheckedChanged(object sender, EventArgs e)
         {
-            if (checkBox_DarkUI.Checked)
-            {
-                /*Form_GCC.ActiveForm.BackColor = SystemColors.ControlDarkDark;
-                Form_GCC.ActiveForm.ForeColor = SystemColors.ControlLight;
-                groupBox_StageEditor.ForeColor = SystemColors.ControlLight;
-                foreach (var button in GetAll(this, typeof(Button)))
-                {
-                    DarkMe(button, true);
-                }
-                foreach (var text in GetAll(this, typeof(TextBox)))
-                {
-
-                    DarkMe(text, true);
-                }
-                foreach (var combo in GetAll(this, typeof(ComboBox)))
-                {
-
-                    DarkMe(combo, true);
-                }
-                foreach (var listBox in GetAll(this, typeof(ListBox)))
-                {
-
-                    DarkMe(listBox, true);
-                }*/
-
-                
-
-            }
-            else
-            {
-                /*Form_GCC.ActiveForm.BackColor = Form_GCC.DefaultBackColor;
-                Form_GCC.ActiveForm.ForeColor = Form_GCC.DefaultForeColor;
-                groupBox_StageEditor.ForeColor = Form_GCC.DefaultForeColor;
-                foreach (var button in GetAll(this, typeof(Button)))
-                {
-                    DarkMe(button, false);
-                }
-                foreach (var text in GetAll(this, typeof(TextBox)))
-                {
-
-                    DarkMe(text, false);
-                }
-                foreach (var combo in GetAll(this, typeof(ComboBox)))
-                {
-
-                    DarkMe(combo, false);
-                }
-                foreach (var listBox in GetAll(this, typeof(ListBox)))
-                {
-
-                    DarkMe(listBox, false);
-                }*/
-            }
-        }
-        public IEnumerable<Control> GetAll(Control control, Type type)
-        {
-            var controls = control.Controls.Cast<Control>();
-
-            return controls.SelectMany(ctrl => GetAll(ctrl, type))
-                                      .Concat(controls)
-                                      .Where(c => c.GetType() == type);
-        }
-
-        private void DarkMe(Control control, bool mode)
-        {
-            if (mode)
-            {
-                
-                control.BackColor = SystemColors.ControlDark;
-                control.ForeColor = SystemColors.ControlLight;
-            }
-            else
-            {
-                control.BackColor = SystemColors.Control;
-                control.ForeColor = SystemColors.ControlText;
-            }
             
+            Program.darkUI = checkBox_DarkUI.Checked;
+            DarkUI.Dark(this);
         }
+        
 
         public bool StageParamLoaded()
         {
@@ -695,7 +623,6 @@ namespace Groove_Coaster_Converter
 
         private void button_about_Click(object sender, EventArgs e)
         {
-            form_about = new Form_About();
             form_about.ShowDialog();
         }
     }

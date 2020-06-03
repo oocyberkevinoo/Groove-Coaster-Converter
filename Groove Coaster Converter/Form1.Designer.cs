@@ -500,14 +500,13 @@
             // checkBox_DarkUI
             // 
             this.checkBox_DarkUI.AutoSize = true;
-            this.checkBox_DarkUI.Location = new System.Drawing.Point(775, 30);
+            this.checkBox_DarkUI.Location = new System.Drawing.Point(721, 8);
             this.checkBox_DarkUI.Name = "checkBox_DarkUI";
             this.checkBox_DarkUI.Size = new System.Drawing.Size(79, 17);
             this.checkBox_DarkUI.TabIndex = 18;
             this.checkBox_DarkUI.Text = "Dark Mode";
             this.checkBox_DarkUI.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.checkBox_DarkUI.UseVisualStyleBackColor = true;
-            this.checkBox_DarkUI.Visible = false;
             this.checkBox_DarkUI.CheckedChanged += new System.EventHandler(this.checkBox_DarkUI_CheckedChanged);
             // 
             // openFileDialog1
@@ -922,6 +921,7 @@
             // 
             // comboBox_SystemStageParam
             // 
+            this.comboBox_SystemStageParam.BackColor = System.Drawing.SystemColors.Window;
             this.comboBox_SystemStageParam.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox_SystemStageParam.FormattingEnabled = true;
             this.comboBox_SystemStageParam.Items.AddRange(new object[] {
