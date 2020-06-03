@@ -1,0 +1,6 @@
+X check if multiple convert have issues (gamedata ?)
+X GC2 compatibility
+X temp.dat in system32 ?
+X return error on when not correct gamedata
+X OGG compatibility (for mobile)
+X Mobile convert

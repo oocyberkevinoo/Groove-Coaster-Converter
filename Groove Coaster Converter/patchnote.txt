@@ -1,0 +1,11 @@
+Groove Coaster Converter ALPHA 0.2.2 - PatchNote
+by CyberKevin
+
+ALPHA 0.2.2 - 03/06/2020
+- Lot of fixes
+- Cleaned
+
+
+ALPHA 0.2.0 - 03/06/2020
+
+- Alpha build for the new GUI version.
