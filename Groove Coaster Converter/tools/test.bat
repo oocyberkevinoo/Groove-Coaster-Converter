@@ -1,1 +1,0 @@
-ffmpeg.exe -i alkali_bgm.ogg alkali_bgm.wav
