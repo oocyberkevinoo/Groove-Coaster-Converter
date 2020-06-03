@@ -152,9 +152,6 @@
     <None Include="switch\touhou_prefab_2.dat" />
     <None Include="switch\vocaloid_prefab_1.dat" />
     <None Include="switch\vocaloid_prefab_2.dat" />
-    <None Include="tools\test.bat">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
