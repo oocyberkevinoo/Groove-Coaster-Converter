@@ -162,6 +162,7 @@
             this.statusStrip1.SizingGrip = false;
             this.statusStrip1.TabIndex = 3;
             this.statusStrip1.Text = "statusStrip1";
+            this.statusStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.statusStrip1_ItemClicked);
             // 
             // toolStrip_status
             // 
@@ -254,44 +255,52 @@
             // 
             // button_FileOutput
             // 
+            this.button_FileOutput.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.button_FileOutput.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_FileOutput.Location = new System.Drawing.Point(315, 16);
             this.button_FileOutput.Name = "button_FileOutput";
             this.button_FileOutput.Size = new System.Drawing.Size(50, 23);
             this.button_FileOutput.TabIndex = 8;
             this.button_FileOutput.Text = "Folder...";
-            this.button_FileOutput.UseVisualStyleBackColor = true;
+            this.button_FileOutput.UseVisualStyleBackColor = false;
             this.button_FileOutput.Click += new System.EventHandler(this.button_FileOutput_Click);
             // 
             // button_onlyStageParam
             // 
+            this.button_onlyStageParam.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
             this.button_onlyStageParam.Enabled = false;
+            this.button_onlyStageParam.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_onlyStageParam.Location = new System.Drawing.Point(397, 224);
             this.button_onlyStageParam.Name = "button_onlyStageParam";
             this.button_onlyStageParam.Size = new System.Drawing.Size(276, 28);
             this.button_onlyStageParam.TabIndex = 15;
             this.button_onlyStageParam.Text = "Update Stage Param";
-            this.button_onlyStageParam.UseVisualStyleBackColor = true;
+            this.button_onlyStageParam.UseVisualStyleBackColor = false;
             this.button_onlyStageParam.Visible = false;
             this.button_onlyStageParam.Click += new System.EventHandler(this.button_ConvertUpdate_Click);
             // 
             // button_Convert
             // 
+            this.button_Convert.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.button_Convert.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_Convert.Location = new System.Drawing.Point(397, 258);
             this.button_Convert.Name = "button_Convert";
             this.button_Convert.Size = new System.Drawing.Size(276, 28);
             this.button_Convert.TabIndex = 15;
             this.button_Convert.Text = "Convert selected Stage Files";
-            this.button_Convert.UseVisualStyleBackColor = true;
+            this.button_Convert.UseVisualStyleBackColor = false;
             this.button_Convert.Click += new System.EventHandler(this.button_ConvertUpdate_Click);
             // 
             // button_ConvertUpdate
             // 
+            this.button_ConvertUpdate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.button_ConvertUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_ConvertUpdate.Location = new System.Drawing.Point(397, 292);
             this.button_ConvertUpdate.Name = "button_ConvertUpdate";
             this.button_ConvertUpdate.Size = new System.Drawing.Size(276, 62);
             this.button_ConvertUpdate.TabIndex = 14;
             this.button_ConvertUpdate.Text = "Convert files and Update Stage Param";
-            this.button_ConvertUpdate.UseVisualStyleBackColor = true;
+            this.button_ConvertUpdate.UseVisualStyleBackColor = false;
             this.button_ConvertUpdate.Click += new System.EventHandler(this.button_ConvertUpdate_Click);
             // 
             // label3
@@ -333,12 +342,14 @@
             // 
             // button_Data
             // 
+            this.button_Data.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.button_Data.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_Data.Location = new System.Drawing.Point(315, 16);
             this.button_Data.Name = "button_Data";
             this.button_Data.Size = new System.Drawing.Size(50, 23);
             this.button_Data.TabIndex = 8;
             this.button_Data.Text = "Folder...";
-            this.button_Data.UseVisualStyleBackColor = true;
+            this.button_Data.UseVisualStyleBackColor = false;
             this.button_Data.Click += new System.EventHandler(this.button_Data_Click);
             // 
             // comboBox_Mode
@@ -385,12 +396,14 @@
             // 
             // button_FileSHOT
             // 
-            this.button_FileSHOT.Location = new System.Drawing.Point(315, 16);
+            this.button_FileSHOT.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.button_FileSHOT.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_FileSHOT.Location = new System.Drawing.Point(315, 17);
             this.button_FileSHOT.Name = "button_FileSHOT";
             this.button_FileSHOT.Size = new System.Drawing.Size(50, 23);
             this.button_FileSHOT.TabIndex = 8;
             this.button_FileSHOT.Text = "File...";
-            this.button_FileSHOT.UseVisualStyleBackColor = true;
+            this.button_FileSHOT.UseVisualStyleBackColor = false;
             this.button_FileSHOT.Click += new System.EventHandler(this.button_FileSHOT_Click);
             // 
             // panel1
@@ -422,12 +435,14 @@
             // 
             // button_FileBGM
             // 
+            this.button_FileBGM.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.button_FileBGM.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_FileBGM.Location = new System.Drawing.Point(315, 16);
             this.button_FileBGM.Name = "button_FileBGM";
             this.button_FileBGM.Size = new System.Drawing.Size(50, 23);
             this.button_FileBGM.TabIndex = 8;
             this.button_FileBGM.Text = "File...";
-            this.button_FileBGM.UseVisualStyleBackColor = true;
+            this.button_FileBGM.UseVisualStyleBackColor = false;
             this.button_FileBGM.Click += new System.EventHandler(this.button_FileBGM_Click);
             // 
             // comboBox_Genres
@@ -442,12 +457,14 @@
             // 
             // button_Update
             // 
+            this.button_Update.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.button_Update.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_Update.Location = new System.Drawing.Point(409, 338);
             this.button_Update.Name = "button_Update";
             this.button_Update.Size = new System.Drawing.Size(276, 28);
             this.button_Update.TabIndex = 17;
             this.button_Update.Text = "Update Song";
-            this.button_Update.UseVisualStyleBackColor = true;
+            this.button_Update.UseVisualStyleBackColor = false;
             this.button_Update.Click += new System.EventHandler(this.button_Update_Click);
             // 
             // panel5
@@ -480,12 +497,14 @@
             // 
             // button_StageParamInput
             // 
+            this.button_StageParamInput.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.button_StageParamInput.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_StageParamInput.Location = new System.Drawing.Point(315, 16);
             this.button_StageParamInput.Name = "button_StageParamInput";
             this.button_StageParamInput.Size = new System.Drawing.Size(50, 23);
             this.button_StageParamInput.TabIndex = 8;
             this.button_StageParamInput.Text = "File...";
-            this.button_StageParamInput.UseVisualStyleBackColor = true;
+            this.button_StageParamInput.UseVisualStyleBackColor = false;
             this.button_StageParamInput.Click += new System.EventHandler(this.button_StageParamInput_Click);
             // 
             // label6
@@ -787,15 +806,18 @@
             this.textBox_songName1.Name = "textBox_songName1";
             this.textBox_songName1.Size = new System.Drawing.Size(279, 20);
             this.textBox_songName1.TabIndex = 7;
+            this.textBox_songName1.TextChanged += new System.EventHandler(this.textBox_songName1_TextChanged);
             // 
             // button_songDelete
             // 
+            this.button_songDelete.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.button_songDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_songDelete.Location = new System.Drawing.Point(239, 338);
             this.button_songDelete.Name = "button_songDelete";
             this.button_songDelete.Size = new System.Drawing.Size(164, 28);
             this.button_songDelete.TabIndex = 17;
             this.button_songDelete.Text = "Delete Song";
-            this.button_songDelete.UseVisualStyleBackColor = true;
+            this.button_songDelete.UseVisualStyleBackColor = false;
             this.button_songDelete.Click += new System.EventHandler(this.button_songDelete_Click);
             // 
             // label10
@@ -911,12 +933,14 @@
             // 
             // button_LoadStageParam
             // 
+            this.button_LoadStageParam.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.button_LoadStageParam.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_LoadStageParam.Location = new System.Drawing.Point(506, 30);
             this.button_LoadStageParam.Name = "button_LoadStageParam";
             this.button_LoadStageParam.Size = new System.Drawing.Size(134, 23);
             this.button_LoadStageParam.TabIndex = 19;
             this.button_LoadStageParam.Text = "Load Stage Param";
-            this.button_LoadStageParam.UseVisualStyleBackColor = true;
+            this.button_LoadStageParam.UseVisualStyleBackColor = false;
             this.button_LoadStageParam.Click += new System.EventHandler(this.button_LoadStageParam_Click);
             // 
             // comboBox_SystemStageParam
@@ -946,12 +970,14 @@
             // 
             // button_about
             // 
+            this.button_about.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.button_about.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_about.Location = new System.Drawing.Point(806, 4);
             this.button_about.Name = "button_about";
             this.button_about.Size = new System.Drawing.Size(48, 23);
             this.button_about.TabIndex = 21;
             this.button_about.Text = "About";
-            this.button_about.UseVisualStyleBackColor = true;
+            this.button_about.UseVisualStyleBackColor = false;
             this.button_about.Click += new System.EventHandler(this.button_about_Click);
             // 
             // Form_GCC
