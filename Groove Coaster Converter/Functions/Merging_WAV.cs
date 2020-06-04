@@ -23,6 +23,10 @@ namespace Groove_Coaster_Converter.Functions
 
             try
             {
+                if (File.Exists(file_out))
+                {
+                    File.Delete(file_out);
+                }
                 using (Process myProcess = new Process())
                 {
 

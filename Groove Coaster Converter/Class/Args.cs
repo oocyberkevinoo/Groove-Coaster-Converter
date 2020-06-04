@@ -61,6 +61,7 @@ namespace Groove_Coaster_Converter.Class
                     
                     if (command.Equals("-h"))
                     {
+                        
                         form.Visible = false;
                         ClearCommands();
                     }

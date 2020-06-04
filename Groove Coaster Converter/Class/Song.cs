@@ -182,7 +182,15 @@ namespace Groove_Coaster_Converter.Class
                 id = total;
 
                 // Song Name
-                names[0] = Path.GetFileName(form_GCC.textBox_Data.Text);
+                if(Args.songNameData.Length > 0)
+                {
+                    names[0] = Path.GetFileName(Args.songNameData);
+                }
+                else
+                {
+                    names[0] = Path.GetFileName(form_GCC.textBox_Data.Text);
+                }
+                
                 if (Platform == 2)
                 {
                     names[1] = "Name 2";

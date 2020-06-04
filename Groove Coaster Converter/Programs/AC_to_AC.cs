@@ -100,14 +100,17 @@ namespace Groove_Coaster_Converter.Programs
 
                         foreach (var file in d.GetFiles("*.dat"))
                         {
-                            if (!file.Name.Contains("_clip") && !file.Name.Contains("_ext") && file.Name.Contains("ac_"))
-                                Program.songDatas.Add(Path.GetFileNameWithoutExtension(file.Name));
-
-                            if (File.Exists(gameplaydataFolder + file.Name))
+                            if(Args.songNameData.Length == 0 || (Args.songNameData.Length > 0 && file.Name.Contains("ac_"+Args.songNameData+"_") ))
                             {
-                                File.Delete(gameplaydataFolder + file.Name);
+                                if (!file.Name.Contains("_clip") && !file.Name.Contains("_ext") && file.Name.Contains("ac_"))
+                                    Program.songDatas.Add(Path.GetFileNameWithoutExtension(file.Name));
+
+                                if (File.Exists(gameplaydataFolder + file.Name))
+                                {
+                                    File.Delete(gameplaydataFolder + file.Name);
+                                }
+                                File.Copy(file.FullName, gameplaydataFolder + file.Name);
                             }
-                            File.Copy(file.FullName, gameplaydataFolder + file.Name);
                         }
 
                         
