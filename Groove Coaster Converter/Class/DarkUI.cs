@@ -132,14 +132,16 @@ namespace Groove_Coaster_Converter.Class
 
             if (Program.darkUI)
             {
+                control.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
                 colorButtonBack = control.BackColor;
                 colorButtonFore = control.ForeColor;
 
-                control.BackColor = SystemColors.ControlDarkDark;
+                control.BackColor = Color.FromArgb(0xff, 0x30, 0x30, 0x30);
                 control.ForeColor = Color.White;
             }
             else
             {
+                control.FlatStyle = System.Windows.Forms.FlatStyle.System;
                 control.BackColor = colorButtonBack;
                 control.ForeColor = colorButtonFore;
                 control.UseVisualStyleBackColor = true;
@@ -176,7 +178,7 @@ namespace Groove_Coaster_Converter.Class
                 colorTextBoxBack = control.BackColor;
                 colorTextBoxFore = control.ForeColor;
 
-                control.BackColor = SystemColors.ControlDarkDark;
+                control.BackColor = Color.FromArgb(0xff, 0x30, 0x30, 0x30);
                 control.ForeColor = Color.White;
             }
             else
@@ -195,7 +197,7 @@ namespace Groove_Coaster_Converter.Class
                 colorComboBoxBack = control.BackColor;
                 colorComboBoxFore = control.ForeColor;
 
-                control.BackColor = SystemColors.ControlDarkDark;
+                control.BackColor = Color.FromArgb(0xff, 0x30, 0x30, 0x30);
                 control.ForeColor = Color.White;
             }
             else
@@ -214,7 +216,7 @@ namespace Groove_Coaster_Converter.Class
                 colorNumBack = control.BackColor;
                 colorNumFore = control.ForeColor;
 
-                control.BackColor = SystemColors.ControlDarkDark;
+                control.BackColor = Color.FromArgb(0xff, 0x30, 0x30, 0x30);
                 control.ForeColor = Color.White;
             }
             else
@@ -233,7 +235,7 @@ namespace Groove_Coaster_Converter.Class
                 colorListBoxBack = control.BackColor;
                 colorListBoxFore = control.ForeColor;
 
-                control.BackColor = SystemColors.ControlDarkDark;
+                control.BackColor = Color.FromArgb(0xff, 0x30, 0x30, 0x30);
                 control.ForeColor = Color.White;
             }
             else
@@ -253,7 +255,7 @@ namespace Groove_Coaster_Converter.Class
                 colorTabPageFore = control.ForeColor;
 
                 //control.BackColor = SystemColors.ControlDark;
-                control.BackColor = Color.FromArgb(0xff, 0x30, 0x30, 0x30);
+                control.BackColor = Color.Black;
                 control.ForeColor = Color.White;
             }
             else
@@ -273,7 +275,7 @@ namespace Groove_Coaster_Converter.Class
                 colorStatusStripBack = control.BackColor;
                 colorStatusStripFore = control.ForeColor;
 
-                control.BackColor = SystemColors.ControlDarkDark;
+                control.BackColor = Color.FromArgb(0xff, 0x30, 0x30, 0x30);
                 control.ForeColor = Color.White;
             }
             else
