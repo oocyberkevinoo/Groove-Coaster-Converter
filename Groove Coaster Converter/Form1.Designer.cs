@@ -385,7 +385,7 @@
             // 
             // button_FileSHOT
             // 
-            this.button_FileSHOT.Location = new System.Drawing.Point(315, 16);
+            this.button_FileSHOT.Location = new System.Drawing.Point(315, 17);
             this.button_FileSHOT.Name = "button_FileSHOT";
             this.button_FileSHOT.Size = new System.Drawing.Size(50, 23);
             this.button_FileSHOT.TabIndex = 8;
