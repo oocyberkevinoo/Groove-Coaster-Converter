@@ -979,6 +979,7 @@
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "Groove Coaster Converter";
             this.Load += new System.EventHandler(this.Form_GCC_Load);
+            this.Shown += new System.EventHandler(this.Form_GCC_Shown);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.groupBox_StageEditor.ResumeLayout(false);
@@ -1021,13 +1022,10 @@
         private System.Windows.Forms.Button button_FileBGM;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button button_FileSHOT;
-        private System.Windows.Forms.ComboBox comboBox_Mode;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button button_Data;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button button_Convert;
-        private System.Windows.Forms.Button button_ConvertUpdate;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button button_FileOutput;
@@ -1048,14 +1046,12 @@
         public System.Windows.Forms.TextBox textBox_Data;
         public System.Windows.Forms.ComboBox comboBox_Genres;
         public System.Windows.Forms.TextBox textBox_StageParamInput;
-        private System.Windows.Forms.TabControl tabControl_Main;
         private System.Windows.Forms.TabPage tab_AddSong;
         private System.Windows.Forms.TabPage tab_StageParam;
         public System.Windows.Forms.TextBox textBox_FileSHOT;
         public System.Windows.Forms.CheckBox checkBox_SHOT;
         public System.Windows.Forms.TextBox textBox_StageParamBytes;
         public System.Windows.Forms.ListBox listBox_StageParam;
-        private System.Windows.Forms.Button button_LoadStageParam;
         public System.Windows.Forms.ComboBox comboBox_SystemStageParam;
         private System.Windows.Forms.TabPage tab_SongEditor;
         private System.Windows.Forms.Label label7;
@@ -1100,6 +1096,11 @@
         private System.Windows.Forms.Button button_onlyStageParam;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Button button_about;
+        public System.Windows.Forms.ComboBox comboBox_Mode;
+        public System.Windows.Forms.Button button_ConvertUpdate;
+        public System.Windows.Forms.Button button_Convert;
+        public System.Windows.Forms.Button button_LoadStageParam;
+        public System.Windows.Forms.TabControl tabControl_Main;
     }
 }
 

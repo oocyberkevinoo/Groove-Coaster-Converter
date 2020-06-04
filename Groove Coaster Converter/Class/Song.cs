@@ -230,7 +230,7 @@ namespace Groove_Coaster_Converter.Class
 
 
                 // Song BPM
-                BPM = "100";
+                BPM = id.ToString();
 
                 //binReader.ReadBytes(22);  // WHAT IS THIS ???
                 if (Platform == 2)

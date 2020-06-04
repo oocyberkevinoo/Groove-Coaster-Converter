@@ -11,6 +11,8 @@ namespace Groove_Coaster_Converter
 {
     public static class Program
     {
+        public static string[] @params;
+
         public static bool darkUI = true;
         public static string title = "Groove Coaster Converter";
         public static readonly string songFolder = @"songs";
@@ -28,16 +30,19 @@ namespace Groove_Coaster_Converter
         /// Point d'entrée principal de l'application.
         /// </summary>
         [STAThread]
-        static public void Main()
+        static public void Main(string[] args)
         {
             Application.ThreadException += new ThreadExceptionEventHandler(Application_ThreadException);
             AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(CurrentDomain_UnhandledException);
+            @params = args;
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             GCC = new Form_GCC();
             Application.Run(GCC);
             
+
         }
+
 
         static void Application_ThreadException(object sender, ThreadExceptionEventArgs e)
         {

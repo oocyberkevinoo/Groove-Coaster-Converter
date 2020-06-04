@@ -42,11 +42,15 @@ namespace Groove_Coaster_Converter
 
         private void Form_GCC_Load(object sender, EventArgs e)
         {
+            
+
             //listBox_StageParam.DataSource = liste;
             comboBox_Mode.SelectedIndex = 0;
             comboBox_Genres.SelectedIndex = 0;
             comboBox_SystemStageParam.SelectedIndex = 0;
             textBox_StageParamBytes.Text = result;
+
+            
         }
 
 
@@ -258,7 +262,7 @@ namespace Groove_Coaster_Converter
         }
 
 
-        private void button_ConvertUpdate_Click(object sender, EventArgs e)
+        public void button_ConvertUpdate_Click(object sender, EventArgs e)
         {
             bool mode = true;
             bool functionStart = false;
@@ -345,11 +349,16 @@ namespace Groove_Coaster_Converter
                     {
                         MessageHandler.ShowWarning(7);
                     }
+
+                    
                 }
             }
-                
 
-                   
+
+            if (Args.convert)
+            {
+                Application.Exit();
+            }
 
         }
 
@@ -574,7 +583,7 @@ namespace Groove_Coaster_Converter
         }
        
 
-        private void button_LoadStageParam_Click(object sender, EventArgs e)
+        public void button_LoadStageParam_Click(object sender, EventArgs e)
         {
             if (StageParamLoaded())
             {
@@ -624,6 +633,11 @@ namespace Groove_Coaster_Converter
         private void button_about_Click(object sender, EventArgs e)
         {
             form_about.ShowDialog();
+        }
+
+        private void Form_GCC_Shown(object sender, EventArgs e)
+        {
+            Args.args(this);
         }
     }
 }

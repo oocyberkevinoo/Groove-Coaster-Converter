@@ -31,23 +31,45 @@ namespace Groove_Coaster_Converter.Class
             MessageBox.Show(messages[i], "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             log(messages[i]);
         }
+        public static void ShowError(String str)
+        {
+            MessageBox.Show(str, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            log(str);
+        }
         public static void ShowWarning(int i)
         {
             MessageBox.Show(messages[i], "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        }
+        public static void ShowWarning(String str)
+        {
+            MessageBox.Show(str, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
         public static void ShowInfo(int i)
         {
             MessageBox.Show(messages[i], "Groove Coaster Converter", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
+        public static void ShowInfo(String str)
+        {
+            MessageBox.Show(str, "Groove Coaster Converter", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
         public static void ShowExclam(int i)
         {
             MessageBox.Show(messages[i], "Groove Coaster Converter", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+        }
+        public static void ShowExclam(String str)
+        {
+            MessageBox.Show(str, "Groove Coaster Converter", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
         }
 
         public static DialogResult AskQuestion(int i, MessageBoxButtons buttons)
         {
             return MessageBox.Show(messages[i], "Groove Coaster Converter", buttons, MessageBoxIcon.Question);
             
+        }
+        public static DialogResult AskQuestion(String str, MessageBoxButtons buttons)
+        {
+            return MessageBox.Show(str, "Groove Coaster Converter", buttons, MessageBoxIcon.Question);
+
         }
 
         private static void log(String str)
