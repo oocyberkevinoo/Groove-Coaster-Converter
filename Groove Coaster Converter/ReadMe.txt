@@ -1,4 +1,4 @@
-Groove Coaster Converter ALPHA 0.2.2 - HELP
+Groove Coaster Converter ALPHA 0.2.4 - HELP
 by CyberKevin
 
 The software is still in Alpha, so there's not that much to help you for now.
