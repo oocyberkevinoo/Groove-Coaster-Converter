@@ -20,6 +20,7 @@ namespace Groove_Coaster_Converter.Class
         public static string songNameData = "";
         public static bool noAudioConverter = false;
         public static bool noDataConverter = false;
+        public static bool swigs = false;
 
         /*
          *  -h:         Hide software window
@@ -122,6 +123,11 @@ namespace Groove_Coaster_Converter.Class
                     else if (command.Equals("-all"))
                     {
                         form.tabControl_Main.TabPages.Add(form.tab_StageParamConverter);
+                        ClearCommands();
+                    }
+                    else if (command.Equals("-swigs"))
+                    {
+                        swigs = true;
                         ClearCommands();
                     }
 
