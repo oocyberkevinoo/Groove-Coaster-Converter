@@ -23,7 +23,7 @@ namespace Groove_Coaster_Converter.Class
         public String data;
         public int genre;
         public String timer;
-        public int[] difficulties = new int[8];
+        public List<int> difficulties = new List<int>();
         public String BPM;
         public String BGM;
         public String[] BGM_ext = new string[10];
@@ -138,10 +138,19 @@ namespace Groove_Coaster_Converter.Class
             }
         }
 
-        public void UpdateDatabase(int mode)
+        public void UpdateDatabase(int mode, bool newSP=false, string newFile="", bool done=false)
         {
+            string file = "";
             // Database Update
-            string file = form_GCC.textBox_StageParamInput.Text;
+            if (newSP)
+            {
+                file = newFile;
+            }
+            else
+            {
+                file = form_GCC.textBox_StageParamInput.Text;
+            }
+            
             Reader_StageParam reader = new Reader_StageParam();
             if(mode == 0)
             {
@@ -150,7 +159,9 @@ namespace Groove_Coaster_Converter.Class
             }
             List<Byte> newStageParam = new List<Byte>();
             newStageParam.AddRange(File.ReadAllBytes(file));
-            reader.writeBytes(file, platform, mode, this);
+
+            
+            reader.writeBytes(file, platform, mode, this, done);
             switch (mode)
             {
                 case 0:
@@ -159,6 +170,10 @@ namespace Groove_Coaster_Converter.Class
 
                 case 1:
                     newStageParam.RemoveRange(0, 2);
+                    newStageParam.InsertRange(0, File.ReadAllBytes(AppDomain.CurrentDomain.BaseDirectory + "temp.dat"));
+                    break;
+
+                case 2:
                     newStageParam.InsertRange(0, File.ReadAllBytes(AppDomain.CurrentDomain.BaseDirectory + "temp.dat"));
                     break;
             }
@@ -228,12 +243,12 @@ namespace Groove_Coaster_Converter.Class
                 int dif = 4;
                 if (Platform == 2)
                 {
-                    dif = 7;
+                    dif = 8;
                 }
 
                 for (int i2 = 0; i2 < dif; i2++)
                 {
-                    difficulties[i2] = i2+1;
+                    difficulties.Add(i2 + 1);
                 }
 
 
@@ -340,6 +355,135 @@ namespace Groove_Coaster_Converter.Class
                 
 
                 UpdateDatabase(1);
+
+
+
+            }
+            catch (Exception e)
+            {
+                MessageHandler.Show("Creation of the new song failed:\r\n " + e.Message + "\r\n", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                form_GCC.result += "Creation of the new song failed: " + e.Message + "\r\n";
+
+            }
+        }
+
+
+        public void ConvertSong(int Platform, string file, bool done, bool merged = false)
+        {
+
+            //songs = new List<Song>();
+
+
+
+            try
+            {
+                platform = Platform;
+
+              
+
+                if (Platform == 2)
+                {
+                    names[1] = "Name 2";
+                }
+                else
+                {
+                    names[1] = "";
+                }
+                
+                if (Platform == 2)
+                {
+                    extras[0] = "Extra 1";
+                    extras[1] = "Extra 2";
+                    extras[2] = "Extra 3";
+                    extras[3] = "Extra 4";
+                    extras[4] = "Extra 5";
+                }
+                else
+                {
+                    extras[0] = null;
+                    extras[1] = null;
+                    extras[2] = null;
+                    extras[3] = null;
+                    extras[4] = null;
+
+                }
+
+                
+
+                // Song Difficulies
+                int dif = 4;
+                if (Platform == 2)
+                {
+                    difficulties.Add(difficulties[0]);
+                    difficulties.Add(difficulties[1]);
+                    difficulties.Add(difficulties[2]);
+                    difficulties.Add(difficulties[3]);
+                }
+                else
+                {
+                    difficulties.RemoveRange(3, 4);
+
+                }
+
+                // Song BPM
+                BPM = id.ToString();
+
+                //binReader.ReadBytes(22);  // WHAT IS THIS ???
+                unknown.Clear();
+                if (Platform == 2)
+                {
+
+                    unknown.AddRange(switch_flagUnknown);
+                }
+                else
+                {
+
+                    unknown.AddRange(GC2_flagUnknown);
+
+                }
+
+
+
+                
+                if (merged)
+                {
+                    BGM = "m_" + BGM;
+                }
+
+                BGM_ext = new string[10];
+                if (Platform == 2)
+                {
+                    dif = 1;
+                }
+                else
+                {
+                    dif = 8;
+                }
+                for (int i2 = 0; i2 < dif; i2++)
+                {
+                    BGM_ext[i2] = "";
+                }
+
+                additional_data.Clear();
+                if (Platform == 2)
+                {
+                    ver = "1.3";
+                    additional_data.AddRange(switch_flagLockedBeginner);
+                }
+                else if (Platform == 1)
+                {
+                    ver = null;
+                    additional_data.AddRange(GC2_flagLockedBeginner);
+
+                }
+                else
+                {
+                    ver = null;
+                    additional_data.AddRange(GC4EX_flagLockedBeginner);
+                }
+
+
+                UpdateDatabase(2, true, file, done);
 
 
 

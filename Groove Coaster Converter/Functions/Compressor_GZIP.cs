@@ -39,81 +39,90 @@ namespace Groove_Coaster_Converter.Functions
         {
             foreach (FileInfo fileToCompress in directorySelected.GetFiles())
             {
-                if (Args.songNameData.Length == 0 || (Args.songNameData.Length > 0 && fileToCompress.Name.Contains("ac_" + Args.songNameData + "_")))
+                try
                 {
-                    using (FileStream originalFileStream = fileToCompress.OpenRead())
+                    if (Args.songNameData.Length == 0 || (Args.songNameData.Length > 0 && fileToCompress.Name.Contains("ac_" + Args.songNameData + "_")))
                     {
-                        if ((File.GetAttributes(fileToCompress.FullName) &
-                           FileAttributes.Hidden) != FileAttributes.Hidden & fileToCompress.Extension != ".gz")
+                        using (FileStream originalFileStream = fileToCompress.OpenRead())
                         {
-                            using (FileStream compressedFileStream = File.Create(fileToCompress.FullName + ".gz"))
+                            if ((File.GetAttributes(fileToCompress.FullName) &
+                               FileAttributes.Hidden) != FileAttributes.Hidden & fileToCompress.Extension != ".gz")
                             {
-                                using (GZipStream compressionStream = new GZipStream(compressedFileStream,
-                                   CompressionMode.Compress))
+                                using (FileStream compressedFileStream = File.Create(fileToCompress.FullName + ".gz"))
                                 {
-                                    originalFileStream.CopyTo(compressionStream);
+                                    using (GZipStream compressionStream = new GZipStream(compressedFileStream,
+                                       CompressionMode.Compress))
+                                    {
+                                        originalFileStream.CopyTo(compressionStream);
+                                    }
                                 }
-                            }
-                            FileInfo info = new FileInfo(directoryPath + Path.DirectorySeparatorChar + fileToCompress.Name + ".gz");
-                            string fileName = info.Name;
-                            if(!fileToCompress.Name.Contains("_clip") && !fileToCompress.Name.Contains("_ext") && fileToCompress.Name.Contains("ac_"))
-                                Program.songDatas.Add(Path.GetFileNameWithoutExtension(fileToCompress.Name));
+                                FileInfo info = new FileInfo(directoryPath + Path.DirectorySeparatorChar + fileToCompress.Name + ".gz");
+                                string fileName = info.Name;
+                                if (!fileToCompress.Name.Contains("_clip") && !fileToCompress.Name.Contains("_ext") && fileToCompress.Name.Contains("ac_"))
+                                    Program.songDatas.Add(Path.GetFileNameWithoutExtension(fileToCompress.Name));
 
-                            fileName = rename(fileName, "_easy", "_1");
-                            fileName = rename(fileName, "_normal", "_1");
-                            fileName = rename(fileName, "_hard", "_1");
-                            fileName = rename(fileName, "_ex", "_1");
+                                fileName = rename(fileName, "_easy", "_1");
+                                fileName = rename(fileName, "_normal", "_1");
+                                fileName = rename(fileName, "_hard", "_1");
+                                fileName = rename(fileName, "_ex", "_1");
 
-                            //STEAM_to_SWITCH.songDatas[STEAM_to_SWITCH.songDatas.Length] = Path.GetFileNameWithoutExtension(fileName);
+                                //STEAM_to_SWITCH.songDatas[STEAM_to_SWITCH.songDatas.Length] = Path.GetFileNameWithoutExtension(fileName);
 
-                            //list.Add(Path.GetFileNameWithoutExtension(fileName));
+                                //list.Add(Path.GetFileNameWithoutExtension(fileName));
 
 
-                        
 
-                            string  fileOut = destinationPath + @"\" + fileName;
-                            if (!Directory.Exists(destinationPath))
-                            {
-                                Directory.CreateDirectory(destinationPath);
-                            }
 
-                        
-
-                            if (!fileName.Contains("ac_") && mode == 1)
-                            {
-                                fileOut = destinationPath + @"\ac_" + fileName;
-                            }
-                            else
-                            {
-                                if (File.Exists(fileOut))
+                                string fileOut = destinationPath + @"\" + fileName;
+                                if (!Directory.Exists(destinationPath))
                                 {
-                                    File.Delete(fileOut);
+                                    Directory.CreateDirectory(destinationPath);
                                 }
-                                File.Move(info.ToString(), fileOut);
-                            }
 
-                        
-                            if (File.Exists(fileOut.Replace("_1", "_2")))
-                            {
-                                File.Delete(fileOut.Replace("_1", "_2"));
-                            }
 
-                            if (!fileName.Contains("ac_") && mode == 1)
-                            {
-                                File.Move(info.ToString(), fileOut.Replace("_1", "_2"));
-                            }
-                            else
-                            {
-                                File.Copy(fileOut, fileOut.Replace("_1", "_2"));
-                            }
 
-                        
+                                if (!fileName.Contains("ac_") && mode == 1)
+                                {
+                                    fileOut = destinationPath + @"\ac_" + fileName;
+                                }
+                                else
+                                {
+                                    if (File.Exists(fileOut))
+                                    {
+                                        File.Delete(fileOut);
+                                    }
+                                    File.Move(info.ToString(), fileOut);
+                                }
 
-                            Console.WriteLine($"Compressed {fileToCompress.Name}");
-                            //Console.WriteLine($"Compressed {fileToCompress.Name} from {fileToCompress.Length.ToString()} to {info.Length.ToString()} bytes.");
+
+                                if (File.Exists(fileOut.Replace("_1", "_2")))
+                                {
+                                    File.Delete(fileOut.Replace("_1", "_2"));
+                                }
+
+                                if (!fileName.Contains("ac_") && mode == 1)
+                                {
+                                    File.Move(info.ToString(), fileOut.Replace("_1", "_2"));
+                                }
+                                else
+                                {
+                                    File.Copy(fileOut, fileOut.Replace("_1", "_2"));
+                                }
+
+
+
+                                Console.WriteLine($"Compressed {fileToCompress.Name}");
+                                //Console.WriteLine($"Compressed {fileToCompress.Name} from {fileToCompress.Length.ToString()} to {info.Length.ToString()} bytes.");
+                            }
                         }
                     }
                 }
+                catch (Exception)
+                {
+
+                    
+                }
+                
             }
             Console.WriteLine("Compression done.");
         }

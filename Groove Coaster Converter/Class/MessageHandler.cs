@@ -18,7 +18,8 @@ namespace Groove_Coaster_Converter.Class
             "Merging audio files failed.\nPlease check that your files are the correct ones.",
             "Updating Stage_param failed.\nPlease check that your files are the correct ones.",
             "Gameplay data seems wrong.\nplease make sure that the Song Data folder only contain the data files of the song you want to convert.",
-            "This conversion is not supported yet."};
+            "This conversion is not supported yet.",
+            "Those directories or files doesn't exist."};
 
 
         public static void Show(String text, String title, MessageBoxButtons buttons, MessageBoxIcon icon)

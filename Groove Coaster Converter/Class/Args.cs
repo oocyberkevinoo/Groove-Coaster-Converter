@@ -39,6 +39,7 @@ namespace Groove_Coaster_Converter.Class
          *  -nac:       No Audio Converter  
          *  -ndc:       No Data Converter
          *  -convert x: Convert mode 
+         *  -all:       Enable All converter mode (NOT STABLE!)
          *              (0: files only; 1: Convert & Update stage_param)
          */
 
@@ -104,12 +105,12 @@ namespace Groove_Coaster_Converter.Class
                     }
                     else if (command.Equals("-nac"))
                     {
-                        noAudioConverter = false;
+                        noAudioConverter = true;
                         ClearCommands();
                     }
                     else if (command.Equals("-ndc"))
                     {
-                        noDataConverter = false;
+                        noDataConverter = true;
                         ClearCommands();
                     }
                     else if (command.Equals("-convert") && param.Length > 0)
@@ -117,6 +118,11 @@ namespace Groove_Coaster_Converter.Class
                         int_convert = int.Parse(param);
                         convert = true;
                         
+                    }
+                    else if (command.Equals("-all"))
+                    {
+                        form.tabControl_Main.TabPages.Add(form.tab_StageParamConverter);
+                        ClearCommands();
                     }
 
                     if (command.Length > 0 && param.Length > 0)

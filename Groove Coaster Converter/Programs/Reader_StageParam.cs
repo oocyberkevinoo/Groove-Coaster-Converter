@@ -145,7 +145,7 @@ namespace Groove_Coaster_Converter.Programs
                         difficulties[i2] = binReader.ReadByte();
                     }
 
-                    song.difficulties = difficulties;
+                    song.difficulties.AddRange(difficulties);
 
                     // Song BPM
                     cursor = binReader.BaseStream.Position;
@@ -318,7 +318,7 @@ namespace Groove_Coaster_Converter.Programs
             }
             return true;
         }
-        public void writeBytes(String file, int Platform, int mode = 0, Song song = null)
+        public void writeBytes(String file, int Platform, int mode = 0, Song song = null, bool done=false)
         {
             /*if(mode == 1)
             {
@@ -331,7 +331,7 @@ namespace Groove_Coaster_Converter.Programs
             File.Create(file).Close();
             BinaryWriter binWriter = new BinaryWriter(File.Open(file, FileMode.Open), Encoding.UTF8);
 
-            if(mode == 1)
+            if(mode == 1 || (mode == 2 && done))
             {
                 binWriter.Write((short)ReverseBytes(form_GCC.total_entries));
 

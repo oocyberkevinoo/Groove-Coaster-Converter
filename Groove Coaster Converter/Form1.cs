@@ -11,11 +11,13 @@ using System.IO;
 using Groove_Coaster_Converter.Programs;
 using Groove_Coaster_Converter.Class;
 using Microsoft.WindowsAPICodePack.Dialogs;
+using Groove_Coaster_Converter.Functions;
 
 namespace Groove_Coaster_Converter
 {
     public partial class Form_GCC : Form
     {
+        public bool all = false;
         public bool dark = false;
         private Form_About form_about = new Form_About();
         public ushort total_entries;
@@ -38,6 +40,7 @@ namespace Groove_Coaster_Converter
             comboBox_songGenre.Items.AddRange(genres);
             
             EnableDisable_UI_SHOT(false);
+            tabControl_Main.TabPages.Remove(tab_StageParamConverter);
         }
 
         private void Form_GCC_Load(object sender, EventArgs e)
@@ -264,20 +267,32 @@ namespace Groove_Coaster_Converter
 
         public void button_ConvertUpdate_Click(object sender, EventArgs e)
         {
+            
             bool mode = true;
             bool functionStart = false;
             if (StageParamLoaded())
             {
                 if (OutputCheck())
                 {
-                    if (sender == button_ConvertUpdate)
+                    if (sender == button_ConvertUpdate || sender == button_ConvertALL)
                     {
                         mode = true;
+                        if(sender == button_ConvertALL)
+                        {
+                            all = true;
+                        }
                     }
                     else if (sender == button_Convert)
                     {
                         mode = false;
                     }
+
+                    if (all)
+                    {
+
+                    }
+
+
 
 
                     if (comboBox_Mode.SelectedIndex == 0)
@@ -550,8 +565,6 @@ namespace Groove_Coaster_Converter
 
         private void button_Data_Click(object sender, EventArgs e)
         {
-            //folderBrowserDialog1.ShowDialog();
-            //textBox_Data.Text = folderBrowserDialog1.SelectedPath;
             textBox_Data.Text = FileSelect("",
                 "",
                 Application.StartupPath, true, textBox_Data.Text);
@@ -559,7 +572,7 @@ namespace Groove_Coaster_Converter
 
         private void comboBox_Mode_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+            comboBox_ALL_Destination.SelectedIndex = comboBox_Mode.SelectedIndex;
             toolStrip_status.Text = comboBox_Mode.Text;
         }
 
@@ -638,6 +651,121 @@ namespace Groove_Coaster_Converter
         private void Form_GCC_Shown(object sender, EventArgs e)
         {
             Args.args(this);
+        }
+
+        private void comboBox_ALL_Source_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            comboBox_Mode.SelectedIndex = comboBox_ALL_Destination.SelectedIndex;
+        }
+
+        private void textBox_output_TextChanged(object sender, EventArgs e)
+        {
+            textBox_ALL_Output.Text = textBox_output.Text;
+        }
+
+        private void textBox_ALL_output_TextChanged(object sender, EventArgs e)
+        {
+            textBox_output.Text = textBox_ALL_Output.Text;
+        }
+
+        private void button_ConvertALL_Click(object sender, EventArgs e)
+        {
+            if(sender == button_ALL_convertSP || (Directory.Exists(textBox_ALL_BGM.Text) && Directory.Exists(textBox_ALL_Data.Text) &&
+               Directory.Exists(textBox_ALL_Output.Text) && File.Exists(textBox_ALL_StageParam.Text)))
+            {
+                try
+                {
+                    
+                    List<Song> newSongs = new List<Song>(songs);
+                    //Reader_StageParam reader = new Reader_StageParam();
+                    //newSongs.AddRange(reader.readBytes(textBox_ALL_StageParam.Text, comboBox_ALL_Destination.SelectedIndex));
+                    int i = 0;
+                    toolStrip_status2.Text = "Convert... " + i + "/" + songs.Count;
+                    if (!File.Exists(textBox_ALL_Output.Text + @"\stage_param.dat"))
+                    {
+                        File.Create(textBox_ALL_Output.Text + @"\stage_param.dat");
+
+                    }
+                    bool done = false;
+                    foreach (var song in newSongs)
+                    {
+                        i++;
+                        if(i == songs.Count)
+                        {
+                            done = true;
+                        }
+
+                        song.ConvertSong(comboBox_ALL_Destination.SelectedIndex, textBox_ALL_Output.Text+@"\stage_param.dat", done);
+
+                        toolStrip_status2.Text = "Convert... " + i + "/" + songs.Count;
+
+                    }
+
+
+
+                }
+                catch (Exception)
+                {
+
+                    throw;
+                }
+            }
+            else if (sender == button_ConvertALL)
+            {
+                DirectoryInfo dir = new DirectoryInfo(textBox_ALL_BGM.Text);
+                foreach (FileInfo songFile in dir.GetFiles())
+                {
+                    // Convert WAV file to 48khz
+                    new Converter_WAV_48khz().SingleFileConversion(songFile.FullName, @"switch\temp");
+
+                    // Convert to OPUS
+                    new Converter_WAV_to_OPUS().Main(@"switch\temp", textBox_ALL_Output.Text + @"\stage\sound");
+
+                }
+
+
+                // Compress to GZIP all the datas files
+                //new Compressor_GZIP().Main(0, textBox_ALL_Data.Text, textBox_ALL_Output.Text + @"\stage\data_gz");
+            }
+            else
+            {
+                MessageHandler.ShowError(8);
+            }
+        }
+
+        private void button_ALL_Data_Click(object sender, EventArgs e)
+        {
+            textBox_ALL_Data.Text = FileSelect("",
+                "",
+                Application.StartupPath, true, textBox_ALL_Data.Text);
+        }
+
+        private void button_ALL_BGM_Click(object sender, EventArgs e)
+        {
+            textBox_ALL_BGM.Text = FileSelect("",
+                "",
+                Application.StartupPath, true, textBox_ALL_BGM.Text);
+        }
+
+        private void button_ALL_Output_Click(object sender, EventArgs e)
+        {
+            textBox_ALL_Output.Text = FileSelect("",
+                "",
+                Application.StartupPath, true, textBox_ALL_Output.Text);
+        }
+
+        private void button_ALL_StageParam_Click(object sender, EventArgs e)
+        {
+            String dir = Application.StartupPath;
+            if (File.Exists(textBox_ALL_StageParam.Text))
+            {
+                dir = textBox_ALL_StageParam.Text;
+            }
+            textBox_ALL_StageParam.Text = FileSelect("Stage_Param",
+                "Stage_Param File|stage_param.dat|" +
+                "Dat File(*.dat)|*.dat|" +
+                "All files (*.*)|*.*",
+                dir, false, textBox_ALL_StageParam.Text);
         }
     }
 }

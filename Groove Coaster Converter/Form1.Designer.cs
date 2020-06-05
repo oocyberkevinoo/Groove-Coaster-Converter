@@ -116,6 +116,27 @@
             this.comboBox_SystemStageParam = new System.Windows.Forms.ComboBox();
             this.label_songsLoaded = new System.Windows.Forms.Label();
             this.button_about = new System.Windows.Forms.Button();
+            this.tab_StageParamConverter = new System.Windows.Forms.TabPage();
+            this.button_ConvertALL = new System.Windows.Forms.Button();
+            this.label18 = new System.Windows.Forms.Label();
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.label19 = new System.Windows.Forms.Label();
+            this.textBox_ALL_Output = new System.Windows.Forms.TextBox();
+            this.button_ALL_Output = new System.Windows.Forms.Button();
+            this.panel8 = new System.Windows.Forms.Panel();
+            this.label20 = new System.Windows.Forms.Label();
+            this.textBox_ALL_Data = new System.Windows.Forms.TextBox();
+            this.button_ALL_Data = new System.Windows.Forms.Button();
+            this.comboBox_ALL_Destination = new System.Windows.Forms.ComboBox();
+            this.panel9 = new System.Windows.Forms.Panel();
+            this.label21 = new System.Windows.Forms.Label();
+            this.textBox_ALL_BGM = new System.Windows.Forms.TextBox();
+            this.button_ALL_BGM = new System.Windows.Forms.Button();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.label17 = new System.Windows.Forms.Label();
+            this.textBox_ALL_StageParam = new System.Windows.Forms.TextBox();
+            this.button_ALL_StageParam = new System.Windows.Forms.Button();
+            this.button_ALL_convertSP = new System.Windows.Forms.Button();
             this.statusStrip1.SuspendLayout();
             this.groupBox_StageEditor.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -135,6 +156,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_songID)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_songDifficulty1)).BeginInit();
             this.tab_StageParam.SuspendLayout();
+            this.tab_StageParamConverter.SuspendLayout();
+            this.panel7.SuspendLayout();
+            this.panel8.SuspendLayout();
+            this.panel9.SuspendLayout();
+            this.panel6.SuspendLayout();
             this.SuspendLayout();
             // 
             // listBox_StageParam
@@ -201,8 +227,8 @@
             // 
             this.groupBox_StageEditor.Controls.Add(this.label16);
             this.groupBox_StageEditor.Controls.Add(this.panel4);
-            this.groupBox_StageEditor.Controls.Add(this.button_onlyStageParam);
             this.groupBox_StageEditor.Controls.Add(this.button_Convert);
+            this.groupBox_StageEditor.Controls.Add(this.button_onlyStageParam);
             this.groupBox_StageEditor.Controls.Add(this.button_ConvertUpdate);
             this.groupBox_StageEditor.Controls.Add(this.label3);
             this.groupBox_StageEditor.Controls.Add(this.panel3);
@@ -230,9 +256,9 @@
             this.panel4.Controls.Add(this.label4);
             this.panel4.Controls.Add(this.textBox_output);
             this.panel4.Controls.Add(this.button_FileOutput);
-            this.panel4.Location = new System.Drawing.Point(6, 311);
+            this.panel4.Location = new System.Drawing.Point(12, 301);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(382, 43);
+            this.panel4.Size = new System.Drawing.Size(376, 43);
             this.panel4.TabIndex = 16;
             // 
             // label4
@@ -249,12 +275,13 @@
             this.textBox_output.AllowDrop = true;
             this.textBox_output.Location = new System.Drawing.Point(6, 19);
             this.textBox_output.Name = "textBox_output";
-            this.textBox_output.Size = new System.Drawing.Size(303, 20);
+            this.textBox_output.Size = new System.Drawing.Size(297, 20);
             this.textBox_output.TabIndex = 7;
+            this.textBox_output.TextChanged += new System.EventHandler(this.textBox_output_TextChanged);
             // 
             // button_FileOutput
             // 
-            this.button_FileOutput.Location = new System.Drawing.Point(315, 16);
+            this.button_FileOutput.Location = new System.Drawing.Point(309, 16);
             this.button_FileOutput.Name = "button_FileOutput";
             this.button_FileOutput.Size = new System.Drawing.Size(50, 23);
             this.button_FileOutput.TabIndex = 8;
@@ -265,9 +292,9 @@
             // button_onlyStageParam
             // 
             this.button_onlyStageParam.Enabled = false;
-            this.button_onlyStageParam.Location = new System.Drawing.Point(397, 224);
+            this.button_onlyStageParam.Location = new System.Drawing.Point(611, 217);
             this.button_onlyStageParam.Name = "button_onlyStageParam";
-            this.button_onlyStageParam.Size = new System.Drawing.Size(276, 28);
+            this.button_onlyStageParam.Size = new System.Drawing.Size(62, 28);
             this.button_onlyStageParam.TabIndex = 15;
             this.button_onlyStageParam.Text = "Update Stage Param";
             this.button_onlyStageParam.UseVisualStyleBackColor = true;
@@ -276,7 +303,7 @@
             // 
             // button_Convert
             // 
-            this.button_Convert.Location = new System.Drawing.Point(397, 258);
+            this.button_Convert.Location = new System.Drawing.Point(397, 251);
             this.button_Convert.Name = "button_Convert";
             this.button_Convert.Size = new System.Drawing.Size(276, 28);
             this.button_Convert.TabIndex = 15;
@@ -286,7 +313,7 @@
             // 
             // button_ConvertUpdate
             // 
-            this.button_ConvertUpdate.Location = new System.Drawing.Point(397, 292);
+            this.button_ConvertUpdate.Location = new System.Drawing.Point(397, 285);
             this.button_ConvertUpdate.Name = "button_ConvertUpdate";
             this.button_ConvertUpdate.Size = new System.Drawing.Size(276, 62);
             this.button_ConvertUpdate.TabIndex = 14;
@@ -297,7 +324,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(524, 59);
+            this.label3.Location = new System.Drawing.Point(528, 59);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(39, 13);
             this.label3.TabIndex = 13;
@@ -309,7 +336,7 @@
             this.panel3.Controls.Add(this.label2);
             this.panel3.Controls.Add(this.textBox_Data);
             this.panel3.Controls.Add(this.button_Data);
-            this.panel3.Location = new System.Drawing.Point(6, 154);
+            this.panel3.Location = new System.Drawing.Point(6, 171);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(382, 43);
             this.panel3.TabIndex = 12;
@@ -352,14 +379,13 @@
             this.comboBox_Mode.Name = "comboBox_Mode";
             this.comboBox_Mode.Size = new System.Drawing.Size(158, 21);
             this.comboBox_Mode.TabIndex = 12;
-            this.comboBox_Mode.SelectedIndexChanged += new System.EventHandler(this.comboBox_Mode_SelectedIndexChanged);
             // 
             // panel2
             // 
             this.panel2.Controls.Add(this.checkBox_SHOT);
             this.panel2.Controls.Add(this.textBox_FileSHOT);
             this.panel2.Controls.Add(this.button_FileSHOT);
-            this.panel2.Location = new System.Drawing.Point(6, 78);
+            this.panel2.Location = new System.Drawing.Point(6, 87);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(382, 43);
             this.panel2.TabIndex = 11;
@@ -434,7 +460,7 @@
             // 
             this.comboBox_Genres.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox_Genres.FormattingEnabled = true;
-            this.comboBox_Genres.Location = new System.Drawing.Point(569, 51);
+            this.comboBox_Genres.Location = new System.Drawing.Point(573, 51);
             this.comboBox_Genres.Name = "comboBox_Genres";
             this.comboBox_Genres.Size = new System.Drawing.Size(100, 21);
             this.comboBox_Genres.TabIndex = 6;
@@ -519,6 +545,7 @@
             this.tabControl_Main.Controls.Add(this.tab_AddSong);
             this.tabControl_Main.Controls.Add(this.tab_SongEditor);
             this.tabControl_Main.Controls.Add(this.tab_StageParam);
+            this.tabControl_Main.Controls.Add(this.tab_StageParamConverter);
             this.tabControl_Main.Location = new System.Drawing.Point(155, 59);
             this.tabControl_Main.Name = "tabControl_Main";
             this.tabControl_Main.SelectedIndex = 0;
@@ -954,6 +981,217 @@
             this.button_about.UseVisualStyleBackColor = true;
             this.button_about.Click += new System.EventHandler(this.button_about_Click);
             // 
+            // tab_StageParamConverter
+            // 
+            this.tab_StageParamConverter.Controls.Add(this.button_ALL_convertSP);
+            this.tab_StageParamConverter.Controls.Add(this.button_ConvertALL);
+            this.tab_StageParamConverter.Controls.Add(this.label18);
+            this.tab_StageParamConverter.Controls.Add(this.panel6);
+            this.tab_StageParamConverter.Controls.Add(this.panel7);
+            this.tab_StageParamConverter.Controls.Add(this.panel8);
+            this.tab_StageParamConverter.Controls.Add(this.comboBox_ALL_Destination);
+            this.tab_StageParamConverter.Controls.Add(this.panel9);
+            this.tab_StageParamConverter.Location = new System.Drawing.Point(4, 22);
+            this.tab_StageParamConverter.Name = "tab_StageParamConverter";
+            this.tab_StageParamConverter.Size = new System.Drawing.Size(691, 372);
+            this.tab_StageParamConverter.TabIndex = 3;
+            this.tab_StageParamConverter.Text = "Stage Param Converter";
+            this.tab_StageParamConverter.UseVisualStyleBackColor = true;
+            // 
+            // button_ConvertALL
+            // 
+            this.button_ConvertALL.Location = new System.Drawing.Point(423, 307);
+            this.button_ConvertALL.Name = "button_ConvertALL";
+            this.button_ConvertALL.Size = new System.Drawing.Size(256, 53);
+            this.button_ConvertALL.TabIndex = 24;
+            this.button_ConvertALL.Tag = "ALL";
+            this.button_ConvertALL.Text = "Convert Files";
+            this.button_ConvertALL.UseVisualStyleBackColor = true;
+            this.button_ConvertALL.Click += new System.EventHandler(this.button_ConvertALL_Click);
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(452, 207);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(63, 13);
+            this.label18.TabIndex = 23;
+            this.label18.Text = "Destination:";
+            // 
+            // panel7
+            // 
+            this.panel7.Controls.Add(this.label19);
+            this.panel7.Controls.Add(this.textBox_ALL_Output);
+            this.panel7.Controls.Add(this.button_ALL_Output);
+            this.panel7.Location = new System.Drawing.Point(18, 307);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(376, 43);
+            this.panel7.TabIndex = 22;
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(3, 0);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(68, 13);
+            this.label19.TabIndex = 9;
+            this.label19.Text = "Output folder";
+            // 
+            // textBox_ALL_Output
+            // 
+            this.textBox_ALL_Output.AllowDrop = true;
+            this.textBox_ALL_Output.Location = new System.Drawing.Point(6, 19);
+            this.textBox_ALL_Output.Name = "textBox_ALL_Output";
+            this.textBox_ALL_Output.Size = new System.Drawing.Size(297, 20);
+            this.textBox_ALL_Output.TabIndex = 7;
+            this.textBox_ALL_Output.TextChanged += new System.EventHandler(this.textBox_ALL_output_TextChanged);
+            // 
+            // button_ALL_Output
+            // 
+            this.button_ALL_Output.Location = new System.Drawing.Point(309, 16);
+            this.button_ALL_Output.Name = "button_ALL_Output";
+            this.button_ALL_Output.Size = new System.Drawing.Size(50, 23);
+            this.button_ALL_Output.TabIndex = 8;
+            this.button_ALL_Output.Text = "Folder...";
+            this.button_ALL_Output.UseVisualStyleBackColor = true;
+            this.button_ALL_Output.Click += new System.EventHandler(this.button_ALL_Output_Click);
+            // 
+            // panel8
+            // 
+            this.panel8.Controls.Add(this.label20);
+            this.panel8.Controls.Add(this.textBox_ALL_Data);
+            this.panel8.Controls.Add(this.button_ALL_Data);
+            this.panel8.Location = new System.Drawing.Point(24, 21);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(382, 43);
+            this.panel8.TabIndex = 20;
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(3, 0);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(87, 13);
+            this.label20.TabIndex = 9;
+            this.label20.Text = "Song Data folder";
+            // 
+            // textBox_ALL_Data
+            // 
+            this.textBox_ALL_Data.AllowDrop = true;
+            this.textBox_ALL_Data.Location = new System.Drawing.Point(6, 19);
+            this.textBox_ALL_Data.Name = "textBox_ALL_Data";
+            this.textBox_ALL_Data.Size = new System.Drawing.Size(303, 20);
+            this.textBox_ALL_Data.TabIndex = 7;
+            // 
+            // button_ALL_Data
+            // 
+            this.button_ALL_Data.Location = new System.Drawing.Point(315, 16);
+            this.button_ALL_Data.Name = "button_ALL_Data";
+            this.button_ALL_Data.Size = new System.Drawing.Size(50, 23);
+            this.button_ALL_Data.TabIndex = 8;
+            this.button_ALL_Data.Text = "Folder...";
+            this.button_ALL_Data.UseVisualStyleBackColor = true;
+            this.button_ALL_Data.Click += new System.EventHandler(this.button_ALL_Data_Click);
+            // 
+            // comboBox_ALL_Destination
+            // 
+            this.comboBox_ALL_Destination.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_ALL_Destination.FormattingEnabled = true;
+            this.comboBox_ALL_Destination.Items.AddRange(new object[] {
+            "AC GC4EX",
+            "AC GC2",
+            "Switch"});
+            this.comboBox_ALL_Destination.Location = new System.Drawing.Point(521, 204);
+            this.comboBox_ALL_Destination.Name = "comboBox_ALL_Destination";
+            this.comboBox_ALL_Destination.Size = new System.Drawing.Size(158, 21);
+            this.comboBox_ALL_Destination.TabIndex = 21;
+            // 
+            // panel9
+            // 
+            this.panel9.Controls.Add(this.label21);
+            this.panel9.Controls.Add(this.textBox_ALL_BGM);
+            this.panel9.Controls.Add(this.button_ALL_BGM);
+            this.panel9.Location = new System.Drawing.Point(24, 78);
+            this.panel9.Name = "panel9";
+            this.panel9.Size = new System.Drawing.Size(382, 43);
+            this.panel9.TabIndex = 19;
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(3, 0);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(91, 13);
+            this.label21.TabIndex = 9;
+            this.label21.Text = "Song BGM Folder";
+            // 
+            // textBox_ALL_BGM
+            // 
+            this.textBox_ALL_BGM.AllowDrop = true;
+            this.textBox_ALL_BGM.Location = new System.Drawing.Point(6, 19);
+            this.textBox_ALL_BGM.Name = "textBox_ALL_BGM";
+            this.textBox_ALL_BGM.Size = new System.Drawing.Size(303, 20);
+            this.textBox_ALL_BGM.TabIndex = 7;
+            // 
+            // button_ALL_BGM
+            // 
+            this.button_ALL_BGM.Location = new System.Drawing.Point(315, 16);
+            this.button_ALL_BGM.Name = "button_ALL_BGM";
+            this.button_ALL_BGM.Size = new System.Drawing.Size(50, 23);
+            this.button_ALL_BGM.TabIndex = 8;
+            this.button_ALL_BGM.Text = "Folder...";
+            this.button_ALL_BGM.UseVisualStyleBackColor = true;
+            this.button_ALL_BGM.Click += new System.EventHandler(this.button_ALL_BGM_Click);
+            // 
+            // panel6
+            // 
+            this.panel6.Controls.Add(this.label17);
+            this.panel6.Controls.Add(this.textBox_ALL_StageParam);
+            this.panel6.Controls.Add(this.button_ALL_StageParam);
+            this.panel6.Location = new System.Drawing.Point(18, 258);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(376, 43);
+            this.panel6.TabIndex = 22;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(3, 0);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(100, 13);
+            this.label17.TabIndex = 9;
+            this.label17.Text = "Output stage param";
+            // 
+            // textBox_ALL_StageParam
+            // 
+            this.textBox_ALL_StageParam.AllowDrop = true;
+            this.textBox_ALL_StageParam.Location = new System.Drawing.Point(6, 19);
+            this.textBox_ALL_StageParam.Name = "textBox_ALL_StageParam";
+            this.textBox_ALL_StageParam.Size = new System.Drawing.Size(297, 20);
+            this.textBox_ALL_StageParam.TabIndex = 7;
+            this.textBox_ALL_StageParam.TextChanged += new System.EventHandler(this.textBox_ALL_output_TextChanged);
+            // 
+            // button_ALL_StageParam
+            // 
+            this.button_ALL_StageParam.Location = new System.Drawing.Point(309, 16);
+            this.button_ALL_StageParam.Name = "button_ALL_StageParam";
+            this.button_ALL_StageParam.Size = new System.Drawing.Size(50, 23);
+            this.button_ALL_StageParam.TabIndex = 8;
+            this.button_ALL_StageParam.Text = "File...";
+            this.button_ALL_StageParam.UseVisualStyleBackColor = true;
+            this.button_ALL_StageParam.Click += new System.EventHandler(this.button_ALL_StageParam_Click);
+            // 
+            // button_ALL_convertSP
+            // 
+            this.button_ALL_convertSP.Location = new System.Drawing.Point(423, 244);
+            this.button_ALL_convertSP.Name = "button_ALL_convertSP";
+            this.button_ALL_convertSP.Size = new System.Drawing.Size(256, 53);
+            this.button_ALL_convertSP.TabIndex = 24;
+            this.button_ALL_convertSP.Tag = "ALL";
+            this.button_ALL_convertSP.Text = "Convert Database";
+            this.button_ALL_convertSP.UseVisualStyleBackColor = true;
+            this.button_ALL_convertSP.Click += new System.EventHandler(this.button_ConvertALL_Click);
+            // 
             // Form_GCC
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -1008,6 +1246,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_songDifficulty1)).EndInit();
             this.tab_StageParam.ResumeLayout(false);
             this.tab_StageParam.PerformLayout();
+            this.tab_StageParamConverter.ResumeLayout(false);
+            this.tab_StageParamConverter.PerformLayout();
+            this.panel7.ResumeLayout(false);
+            this.panel7.PerformLayout();
+            this.panel8.ResumeLayout(false);
+            this.panel8.PerformLayout();
+            this.panel9.ResumeLayout(false);
+            this.panel9.PerformLayout();
+            this.panel6.ResumeLayout(false);
+            this.panel6.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1101,6 +1349,27 @@
         public System.Windows.Forms.Button button_Convert;
         public System.Windows.Forms.Button button_LoadStageParam;
         public System.Windows.Forms.TabControl tabControl_Main;
+        private System.Windows.Forms.Button button_ConvertALL;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Panel panel7;
+        private System.Windows.Forms.Label label19;
+        public System.Windows.Forms.TextBox textBox_ALL_Output;
+        private System.Windows.Forms.Button button_ALL_Output;
+        private System.Windows.Forms.Panel panel8;
+        private System.Windows.Forms.Label label20;
+        public System.Windows.Forms.TextBox textBox_ALL_Data;
+        private System.Windows.Forms.Button button_ALL_Data;
+        public System.Windows.Forms.ComboBox comboBox_ALL_Destination;
+        private System.Windows.Forms.Panel panel9;
+        private System.Windows.Forms.Label label21;
+        public System.Windows.Forms.TextBox textBox_ALL_BGM;
+        private System.Windows.Forms.Button button_ALL_BGM;
+        private System.Windows.Forms.Panel panel6;
+        private System.Windows.Forms.Label label17;
+        public System.Windows.Forms.TextBox textBox_ALL_StageParam;
+        private System.Windows.Forms.Button button_ALL_StageParam;
+        private System.Windows.Forms.Button button_ALL_convertSP;
+        public System.Windows.Forms.TabPage tab_StageParamConverter;
     }
 }
 
