@@ -122,6 +122,7 @@ namespace Groove_Coaster_Converter.Programs
                     cursor = binReader.BaseStream.Position;
                     song.offsets[12] = cursor;
                     song.genre = binReader.ReadByte();
+                    
                     //result += "Song Genre: " + ReadGenre(binReader.ReadByte()) + Position(cursor) + "\r\n";
 
                     // Song Timer
@@ -258,6 +259,22 @@ namespace Groove_Coaster_Converter.Programs
                     song.additional_data.AddRange(binReader.ReadBytes(dif));  // WHAT IS THIS ???
                     cursor = binReader.BaseStream.Position;
                     song.rangeOffsets[1] = cursor;
+                    /*
+                     * 
+                     * TEMP OPERATION
+                     * 
+                     */
+                     
+                       /* string currentContent = String.Empty;
+                        if (File.Exists(@".\liste.txt"))
+                        {
+                            currentContent = File.ReadAllText(@".\liste.txt");
+                        }
+                        File.WriteAllText(@".\liste.txt", song.id+" - "+song.gameData[0]+"\r\n" + currentContent);
+
+                    /*
+                     *  TEMP OPERATION END
+                     */
                     songs.Add(song);
 
                 }
