@@ -137,6 +137,8 @@
             this.comboBox_SystemStageParam = new System.Windows.Forms.ComboBox();
             this.label_songsLoaded = new System.Windows.Forms.Label();
             this.button_about = new System.Windows.Forms.Button();
+            this.checkBox_unlocked = new System.Windows.Forms.CheckBox();
+            this.checkBox_beginner = new System.Windows.Forms.CheckBox();
             this.statusStrip1.SuspendLayout();
             this.groupBox_StageEditor.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -566,6 +568,8 @@
             // tab_SongEditor
             // 
             this.tab_SongEditor.AutoScroll = true;
+            this.tab_SongEditor.Controls.Add(this.checkBox_beginner);
+            this.tab_SongEditor.Controls.Add(this.checkBox_unlocked);
             this.tab_SongEditor.Controls.Add(this.label15);
             this.tab_SongEditor.Controls.Add(this.textBox_songData);
             this.tab_SongEditor.Controls.Add(this.label11);
@@ -726,7 +730,7 @@
             // 
             // textBox_songDifficulty4
             // 
-            this.textBox_songDifficulty4.Location = new System.Drawing.Point(14, 293);
+            this.textBox_songDifficulty4.Location = new System.Drawing.Point(206, 293);
             this.textBox_songDifficulty4.Name = "textBox_songDifficulty4";
             this.textBox_songDifficulty4.Size = new System.Drawing.Size(186, 20);
             this.textBox_songDifficulty4.TabIndex = 21;
@@ -747,7 +751,7 @@
             // 
             // textBox_songDifficulty3
             // 
-            this.textBox_songDifficulty3.Location = new System.Drawing.Point(14, 267);
+            this.textBox_songDifficulty3.Location = new System.Drawing.Point(14, 293);
             this.textBox_songDifficulty3.Name = "textBox_songDifficulty3";
             this.textBox_songDifficulty3.Size = new System.Drawing.Size(186, 20);
             this.textBox_songDifficulty3.TabIndex = 21;
@@ -768,7 +772,7 @@
             // 
             // textBox_songDifficulty2
             // 
-            this.textBox_songDifficulty2.Location = new System.Drawing.Point(14, 241);
+            this.textBox_songDifficulty2.Location = new System.Drawing.Point(206, 267);
             this.textBox_songDifficulty2.Name = "textBox_songDifficulty2";
             this.textBox_songDifficulty2.Size = new System.Drawing.Size(186, 20);
             this.textBox_songDifficulty2.TabIndex = 19;
@@ -796,7 +800,7 @@
             // 
             // textBox_songDifficulty1
             // 
-            this.textBox_songDifficulty1.Location = new System.Drawing.Point(14, 215);
+            this.textBox_songDifficulty1.Location = new System.Drawing.Point(14, 267);
             this.textBox_songDifficulty1.Name = "textBox_songDifficulty1";
             this.textBox_songDifficulty1.Size = new System.Drawing.Size(186, 20);
             this.textBox_songDifficulty1.TabIndex = 7;
@@ -828,7 +832,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(11, 199);
+            this.label10.Location = new System.Drawing.Point(11, 251);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(58, 13);
             this.label10.TabIndex = 6;
@@ -1192,6 +1196,26 @@
             this.button_about.UseVisualStyleBackColor = true;
             this.button_about.Click += new System.EventHandler(this.button_about_Click);
             // 
+            // checkBox_unlocked
+            // 
+            this.checkBox_unlocked.AutoSize = true;
+            this.checkBox_unlocked.Location = new System.Drawing.Point(14, 190);
+            this.checkBox_unlocked.Name = "checkBox_unlocked";
+            this.checkBox_unlocked.Size = new System.Drawing.Size(72, 17);
+            this.checkBox_unlocked.TabIndex = 27;
+            this.checkBox_unlocked.Text = "Unlocked";
+            this.checkBox_unlocked.UseVisualStyleBackColor = true;
+            // 
+            // checkBox_beginner
+            // 
+            this.checkBox_beginner.AutoSize = true;
+            this.checkBox_beginner.Location = new System.Drawing.Point(14, 213);
+            this.checkBox_beginner.Name = "checkBox_beginner";
+            this.checkBox_beginner.Size = new System.Drawing.Size(68, 17);
+            this.checkBox_beginner.TabIndex = 27;
+            this.checkBox_beginner.Text = "Beginner";
+            this.checkBox_beginner.UseVisualStyleBackColor = true;
+            // 
             // Form_GCC
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -1370,6 +1394,8 @@
         private System.Windows.Forms.Button button_ALL_StageParam;
         private System.Windows.Forms.Button button_ALL_convertSP;
         public System.Windows.Forms.TabPage tab_StageParamConverter;
+        public System.Windows.Forms.CheckBox checkBox_beginner;
+        public System.Windows.Forms.CheckBox checkBox_unlocked;
     }
 }
 

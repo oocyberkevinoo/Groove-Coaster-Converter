@@ -175,6 +175,45 @@ namespace Groove_Coaster_Converter
             textBox_songExt4.Text = songs[song_id].extras[3];
             textBox_songExt5.Text = songs[song_id].extras[4];
 
+            if(songs[song_id].platform == 2)
+            {
+                if (songs[song_id].additional_data[0] == 0x01)
+                {
+                    checkBox_unlocked.Checked = true;
+                }
+                else
+                {
+                    checkBox_unlocked.Checked = false;
+                }
+                if (songs[song_id].additional_data[1] == 0x01)
+                {
+                    checkBox_beginner.Checked = true;
+                }
+                else
+                {
+                    checkBox_beginner.Checked = false;
+                }
+            }
+            else
+            {
+                if (songs[song_id].additional_data[4] == 0x01)
+                {
+                    checkBox_unlocked.Checked = true;
+                }
+                else
+                {
+                    checkBox_unlocked.Checked = false;
+                }
+                if (songs[song_id].additional_data[5] == 0x01)
+                {
+                    checkBox_beginner.Checked = true;
+                }
+                else
+                {
+                    checkBox_beginner.Checked = false;
+                }
+            }
+
 
             result += "Song N°" + song_id + ", " + songs[song_id].names[0] + " has been selected.\r\n";
             textBox_StageParamBytes.Text = result;

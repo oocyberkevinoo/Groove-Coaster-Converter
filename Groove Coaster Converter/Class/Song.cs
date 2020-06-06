@@ -119,6 +119,46 @@ namespace Groove_Coaster_Converter.Class
                 // Song Ver
                 ver = form_GCC.textBox_songVer.Text;
 
+                // Flags
+                if(platform == 2)
+                {
+                    if (form_GCC.checkBox_unlocked.Checked)
+                    {
+                        additional_data[0] = 0x01;
+                    }
+                    else
+                    {
+                        additional_data[0] = 0x00;
+                    }
+                    if (form_GCC.checkBox_beginner.Checked)
+                    {
+                        additional_data[1] = 0x01;
+                    }
+                    else
+                    {
+                        additional_data[1] = 0x00;
+                    }
+                }
+                else
+                {
+                    if (form_GCC.checkBox_unlocked.Checked)
+                    {
+                        additional_data[4] = 0x01;
+                    }
+                    else
+                    {
+                        additional_data[4] = 0x00;
+                    }
+                    if (form_GCC.checkBox_beginner.Checked)
+                    {
+                        additional_data[5] = 0x01;
+                    }
+                    else
+                    {
+                        additional_data[5] = 0x00;
+                    }
+                }
+
                 // Database Update
                 UpdateDatabase(0);
 

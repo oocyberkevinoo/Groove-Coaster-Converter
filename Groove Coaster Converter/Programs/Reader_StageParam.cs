@@ -259,6 +259,8 @@ namespace Groove_Coaster_Converter.Programs
                     song.additional_data.AddRange(binReader.ReadBytes(dif));  // WHAT IS THIS ???
                     cursor = binReader.BaseStream.Position;
                     song.rangeOffsets[1] = cursor;
+
+
                     /*
                      * 
                      * TEMP OPERATION
