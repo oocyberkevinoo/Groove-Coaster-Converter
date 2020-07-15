@@ -54,10 +54,10 @@
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.label2.Location = new System.Drawing.Point(102, 48);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(209, 100);
+            this.label2.Size = new System.Drawing.Size(202, 100);
             this.label2.TabIndex = 0;
-            this.label2.Text = "by Cyberkevin\r\nVersion Alpha 0.2.6\r\n\r\nThis software is still in Alpha.\r\nPlease re" +
-    "port any issue.";
+            this.label2.Text = "by Cyberkevin\r\nVersion 0.3.0\r\n\r\nThis software is still in Beta.\r\nPlease report an" +
+    "y issue.";
             this.label2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // link_Twitter
