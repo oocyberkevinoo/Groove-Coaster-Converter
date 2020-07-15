@@ -267,12 +267,14 @@ namespace Groove_Coaster_Converter.Programs
                      * 
                      */
                      
-                       /* string currentContent = String.Empty;
+                    /*
+                        string currentContent = String.Empty;
                         if (File.Exists(@".\liste.txt"))
                         {
                             currentContent = File.ReadAllText(@".\liste.txt");
                         }
-                        File.WriteAllText(@".\liste.txt", song.id+" - "+song.gameData[0]+"\r\n" + currentContent);
+                        if(song.genre ==1 || song.genre ==2 || song.genre ==7)
+                        File.WriteAllText(@".\liste.txt", song.BGM+" - "+song.gameData[0]+"\r\n" + currentContent);
 
                     /*
                      *  TEMP OPERATION END

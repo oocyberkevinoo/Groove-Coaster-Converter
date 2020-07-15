@@ -109,6 +109,15 @@ namespace Groove_Coaster_Converter.Class
 
                 // Song BGM
                 BGM = form_GCC.textBox_songBGM.Text;
+                BGM_ext[0] = form_GCC.textBox_songBGM_ext1.Text;
+                BGM_ext[1] = form_GCC.textBox_songBGM_ext2.Text;
+                BGM_ext[2] = form_GCC.textBox_songBGM_ext3.Text;
+                BGM_ext[3] = form_GCC.textBox_songBGM_ext4.Text;
+                BGM_ext[4] = form_GCC.textBox_songBGM_ext5.Text;
+                BGM_ext[5] = form_GCC.textBox_songBGM_ext6.Text;
+                BGM_ext[6] = form_GCC.textBox_songBGM_ext7.Text;
+                BGM_ext[7] = form_GCC.textBox_songBGM_ext8.Text;
+
 
                 // Song GameData
                 gameData[0] = form_GCC.textBox_songDifficulty1.Text;

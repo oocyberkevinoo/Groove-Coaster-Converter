@@ -145,6 +145,14 @@ namespace Groove_Coaster_Converter
             textBox_songName4.Text = songs[song_id].names[3];
             textBox_songName5.Text = songs[song_id].names[4];
             textBox_songBGM.Text = songs[song_id].BGM;
+            textBox_songBGM_ext1.Text = songs[song_id].BGM_ext[0];
+            textBox_songBGM_ext2.Text = songs[song_id].BGM_ext[1];
+            textBox_songBGM_ext3.Text = songs[song_id].BGM_ext[2];
+            textBox_songBGM_ext4.Text = songs[song_id].BGM_ext[3];
+            textBox_songBGM_ext5.Text = songs[song_id].BGM_ext[4];
+            textBox_songBGM_ext6.Text = songs[song_id].BGM_ext[5];
+            textBox_songBGM_ext7.Text = songs[song_id].BGM_ext[6];
+            textBox_songBGM_ext8.Text = songs[song_id].BGM_ext[7];
             textBox_songBPM.Text = songs[song_id].BPM;
             textBox_songTimer.Text = songs[song_id].timer;
             textBox_songVer.Text = songs[song_id].ver;
@@ -666,6 +674,14 @@ namespace Groove_Coaster_Converter
                 textBox_songExt4.Enabled = false;
                 textBox_songExt5.Enabled = false;
 
+                textBox_songBGM_ext2.Enabled = true;
+                textBox_songBGM_ext3.Enabled = true;
+                textBox_songBGM_ext4.Enabled = true;
+                textBox_songBGM_ext5.Enabled = true;
+                textBox_songBGM_ext6.Enabled = true;
+                textBox_songBGM_ext7.Enabled = true;
+                textBox_songBGM_ext8.Enabled = true;
+
             }
             else
             {
@@ -679,6 +695,14 @@ namespace Groove_Coaster_Converter
                 textBox_songExt3.Enabled = true;
                 textBox_songExt4.Enabled = true;
                 textBox_songExt5.Enabled = true;
+
+                textBox_songBGM_ext2.Enabled = false;
+                textBox_songBGM_ext3.Enabled = false;
+                textBox_songBGM_ext4.Enabled = false;
+                textBox_songBGM_ext5.Enabled = false;
+                textBox_songBGM_ext6.Enabled = false;
+                textBox_songBGM_ext7.Enabled = false;
+                textBox_songBGM_ext8.Enabled = false;
             }
         }
 
@@ -805,6 +829,21 @@ namespace Groove_Coaster_Converter
                 "Dat File(*.dat)|*.dat|" +
                 "All files (*.*)|*.*",
                 dir, false, textBox_ALL_StageParam.Text);
+        }
+
+        private void comboBox_songGenre_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox3_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label22_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
