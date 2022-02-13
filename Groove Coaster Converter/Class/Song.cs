@@ -46,6 +46,8 @@ namespace Groove_Coaster_Converter.Class
         public Byte[] GC2_flagUnknown = { 0x64, 0x64, 0x64, 0x64, 0x64, 0x64, 0x64, 0x64, 
             0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xAF, 0xC8, 0x01, 0x00 };
 
+        public bool dlc;
+
         private Form_GCC form_GCC = Application.OpenForms["Form_GCC"] as Form_GCC;
 
         public Song()
@@ -59,7 +61,7 @@ namespace Groove_Coaster_Converter.Class
             this.id = id;
         }
 
-        public bool UpdateSong()
+        public bool UpdateSong(int mode = 0)
         {
             try
             {
@@ -168,8 +170,11 @@ namespace Groove_Coaster_Converter.Class
                     }
                 }
 
+                dlc = form_GCC.checkBox_DLC_Switch.Checked;
+
                 // Database Update
                 UpdateDatabase(0);
+
 
                 form_GCC.toolStrip_status3.Text = "Song " + temp_id + " (" + names[0] + ") updated";
                 if (temp_id != id)

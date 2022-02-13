@@ -56,9 +56,10 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(202, 100);
             this.label2.TabIndex = 0;
-            this.label2.Text = "by Cyberkevin\r\nVersion 0.3.0\r\n\r\nThis software is still in Beta.\r\nPlease report an" +
+            this.label2.Text = "by Cyberkevin\r\nVersion 0.3.2\r\n\r\nThis software is still in Beta.\r\nPlease report an" +
     "y issue.";
             this.label2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // link_Twitter
             // 

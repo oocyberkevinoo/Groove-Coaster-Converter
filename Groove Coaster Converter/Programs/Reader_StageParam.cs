@@ -257,6 +257,22 @@ namespace Groove_Coaster_Converter.Programs
                         dif = 8;
                     }
                     song.additional_data.AddRange(binReader.ReadBytes(dif));  // WHAT IS THIS ???
+                    int test_DLC = binReader.PeekChar();
+                    if (test_DLC == 0x01 || test_DLC == 0x02)
+                    {
+                        binReader.ReadString();
+                        binReader.ReadString();
+                        binReader.ReadString();
+                        binReader.ReadString();
+                        binReader.ReadString();
+                        binReader.ReadString();
+                        binReader.ReadString();
+                        binReader.ReadString();
+
+                    }
+                    else
+                        song.dlc = true;
+
                     cursor = binReader.BaseStream.Position;
                     song.rangeOffsets[1] = cursor;
 
@@ -266,15 +282,15 @@ namespace Groove_Coaster_Converter.Programs
                      * TEMP OPERATION
                      * 
                      */
-                     
-                    /*
+                     /*
+                    
                         string currentContent = String.Empty;
                         if (File.Exists(@".\liste.txt"))
                         {
                             currentContent = File.ReadAllText(@".\liste.txt");
                         }
-                        if(song.genre ==1 || song.genre ==2 || song.genre ==7)
-                        File.WriteAllText(@".\liste.txt", song.BGM+" - "+song.gameData[0]+"\r\n" + currentContent);
+                        if(song.BGM_ext[7] == "_x")
+                        File.WriteAllText(@".\liste.txt", song.BGM+song.BGM_ext[7]+" - "+song.gameData[0]+"\r\n" + currentContent);
 
                     /*
                      *  TEMP OPERATION END
@@ -502,6 +518,20 @@ namespace Groove_Coaster_Converter.Programs
                     dif--;
                 }*/
                 binWriter.Write(song.additional_data.ToArray());
+
+                // New difficulties string for 1.0.10 WaiWai Party
+                if (!song.dlc && Platform == 2)
+                {
+                    binWriter.Write(song.difficulties[0].ToString());
+                    binWriter.Write(song.difficulties[1].ToString());
+                    binWriter.Write(song.difficulties[2].ToString());
+                    binWriter.Write(song.difficulties[3].ToString());
+                    binWriter.Write(song.difficulties[4].ToString());
+                    binWriter.Write(song.difficulties[5].ToString());
+                    binWriter.Write(song.difficulties[6].ToString());
+                    binWriter.Write("0");
+                }
+                
 
 
                 // Save song

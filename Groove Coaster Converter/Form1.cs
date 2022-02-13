@@ -17,6 +17,7 @@ namespace Groove_Coaster_Converter
 {
     public partial class Form_GCC : Form
     {
+        public bool dlcConvert = false;
         public bool all = false;
         public bool dark = false;
         private Form_About form_about = new Form_About();
@@ -201,6 +202,11 @@ namespace Groove_Coaster_Converter
                 {
                     checkBox_beginner.Checked = false;
                 }
+
+                if (songs[song_id].dlc)
+                    checkBox_DLC_Switch.Checked = true;
+                else
+                    checkBox_DLC_Switch.Checked = false;
             }
             else
             {
@@ -482,7 +488,7 @@ namespace Groove_Coaster_Converter
             
         }
 
-        private void button_Update_Click(object sender, EventArgs e)
+        private void button_Update_Click(object sender = null, EventArgs e = null)
         {
             if (StageParamLoaded())
             {
@@ -842,6 +848,33 @@ namespace Groove_Coaster_Converter
         }
 
         private void label22_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (StageParamLoaded())
+            {
+
+                for (int i = 0; i < listBox_StageParam.Items.Count; i++)
+                {
+                    listBox_StageParam.SelectedIndex = i;
+                    SelectSong();
+                    checkBox_DLC_Switch.Checked = false;
+                    button_Update_Click();
+                }
+                dlcConvert = false;
+            }
+            dlcConvert = false;
+        }
+
+        private void checkBox_unlocked_CheckedChanged(object sender, EventArgs e)
         {
 
         }
