@@ -1,5 +1,17 @@
-Groove Coaster Converter ALPHA 0.2.2 - PatchNote
+Groove Coaster Converter ALPHA 0.3.3 - PatchNote
 by CyberKevin
+
+0.3.3 - 15/02/2022
+- Convert files without updating stage_param
+- Create new entries for songs in stage_param
+- Fixed issue after badly laoded a stage_param file
+- EXPERIMENTAL: Convert all the stage_param and files in one click (please don't use this sh*t)
+
+0.3.2 - 13/02/2022
+- Add compatibility with new Switch format (>= 1.0.10)
+- Can define a song as a Switch DLC or not (old songs are recognized as DLC)
+- Auto convert all songs to the new Switch Format (>= 1.0.10)
+- Advanced options for auto-converting stuff, extremely unstable)
 
 0.3.0 - 15/07/2020
 - Added BGM Ext editing

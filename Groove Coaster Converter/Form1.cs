@@ -41,7 +41,7 @@ namespace Groove_Coaster_Converter
             comboBox_songGenre.Items.AddRange(genres);
             
             EnableDisable_UI_SHOT(false);
-            tabControl_Main.TabPages.Remove(tab_StageParamConverter);
+            //tabControl_Main.TabPages.Remove(tab_StageParamConverter);
         }
 
         private void Form_GCC_Load(object sender, EventArgs e)
@@ -310,7 +310,7 @@ namespace Groove_Coaster_Converter
         {
             if (!File.Exists(textBox_StageParamInput.Text))
             {
-                MessageHandler.ShowError(0);
+                
                 return false;
             }
             else
@@ -321,31 +321,21 @@ namespace Groove_Coaster_Converter
         public void button_ConvertUpdate_Click(object sender, EventArgs e)
         {
             
-            bool mode = true;
+            bool mode_updater = true;
+            bool mode_converter = true;
             bool functionStart = false;
-            if (StageParamLoaded())
+            all = false;
+
+            if (StageParamLoaded() || sender == button_Convert)
             {
                 if (OutputCheck())
                 {
-                    if (sender == button_ConvertUpdate || sender == button_ConvertALL)
-                    {
-                        mode = true;
-                        if(sender == button_ConvertALL)
-                        {
-                            all = true;
-                        }
-                    }
+                    if (sender == button_ConvertALL)
+                        all = true;
                     else if (sender == button_Convert)
-                    {
-                        mode = false;
-                    }
-
-                    if (all)
-                    {
-
-                    }
-
-
+                        mode_updater = false;
+                    else if(sender == button_Update)
+                        mode_converter = false;
 
 
                     if (comboBox_Mode.SelectedIndex == 0)
@@ -360,7 +350,7 @@ namespace Groove_Coaster_Converter
                             {
                                 functionStart = true;
                                 AC_to_SWITCH converter = new AC_to_SWITCH();
-                                converter.Conversion(mode, true, comboBox_SystemStageParam.SelectedIndex);
+                                converter.Conversion(mode_updater, true, comboBox_SystemStageParam.SelectedIndex);
 
                             }
                             else if (comboBox_SystemStageParam.SelectedIndex == 0 ||
@@ -368,7 +358,7 @@ namespace Groove_Coaster_Converter
                             {
                                 functionStart = true;
                                 AC_to_AC converter = new AC_to_AC();
-                                converter.Conversion(mode, true, comboBox_SystemStageParam.SelectedIndex);
+                                converter.Conversion(mode_updater, true, comboBox_SystemStageParam.SelectedIndex);
 
                             }
                             else if (!functionStart)
@@ -397,11 +387,11 @@ namespace Groove_Coaster_Converter
                             MOBILE_to_SWITCH converter = new MOBILE_to_SWITCH();
                             if (sender.Equals(button_onlyStageParam))
                             {
-                                converter.Conversion(mode, true, true);
+                                converter.Conversion(mode_updater, true, true);
                             }
                             else
                             {
-                                converter.Conversion(mode, true);
+                                converter.Conversion(mode_updater, true);
                             }
 
                         }
@@ -420,6 +410,10 @@ namespace Groove_Coaster_Converter
 
                     
                 }
+            }
+            else
+            {
+                MessageHandler.ShowError(0);
             }
 
 
@@ -877,6 +871,18 @@ namespace Groove_Coaster_Converter
         private void checkBox_unlocked_CheckedChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void button_createSong_Click(object sender, EventArgs e)
+        {
+            if (StageParamLoaded())
+            {
+                int i = songs.Count;
+                songs.Add(new Song());
+                songs[i].NewSong(comboBox_SystemStageParam.SelectedIndex, (ushort)listBox_StageParam.Items.Count, false, false);
+                ReloadSongList();
+                //songs[i].CreateSong(comboBox_SystemStageParam.SelectedIndex);
+            }
         }
     }
 }

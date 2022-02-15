@@ -122,7 +122,7 @@ namespace Groove_Coaster_Converter.Class
                     }
                     else if (command.Equals("-all"))
                     {
-                        form.tabControl_Main.TabPages.Add(form.tab_StageParamConverter);
+                        //form.tabControl_Main.TabPages.Add(form.tab_StageParamConverter);
                         ClearCommands();
                     }
                     else if (command.Equals("-swigs"))

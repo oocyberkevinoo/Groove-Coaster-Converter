@@ -236,11 +236,134 @@ namespace Groove_Coaster_Converter.Class
             File.Delete(AppDomain.CurrentDomain.BaseDirectory + "temp.dat");
         }
 
-        public void NewSong(int Platform, ushort total, bool merged=false)
+        public void CreateSong(int Platform)
         {
+            try
+            {
+                platform = Platform;
 
-            //songs = new List<Song>();
+                // Song ID
+                id = (uint)form_GCC.listBox_StageParam.Items.Count;
 
+                // Song Name
+                names[0] = form_GCC.textBox_songName1.Text;
+                names[1] = form_GCC.textBox_songName2.Text;
+                names[2] = form_GCC.textBox_songName3.Text;
+                names[3] = form_GCC.textBox_songName4.Text;
+                names[4] = form_GCC.textBox_songName5.Text;
+
+                // Song Ext
+                if (platform == 2)
+                {
+                    extras[0] = form_GCC.textBox_songExt1.Text;
+                    extras[1] = form_GCC.textBox_songExt2.Text;
+                    extras[2] = form_GCC.textBox_songExt3.Text;
+                    extras[3] = form_GCC.textBox_songExt4.Text;
+                    extras[4] = form_GCC.textBox_songExt5.Text;
+                }
+
+                // Song Data
+                data = form_GCC.textBox_songData.Text;
+
+                // Song Genre
+                genre = form_GCC.comboBox_songGenre.SelectedIndex;
+
+                // Song Timer
+                timer = form_GCC.textBox_songTimer.Text;
+
+                // Song Difficulties
+                difficulties.Add((int)form_GCC.numericUpDown_songDifficulty1.Value);
+                difficulties.Add((int)form_GCC.numericUpDown_songDifficulty2.Value);
+                difficulties.Add((int)form_GCC.numericUpDown_songDifficulty3.Value);
+                difficulties.Add((int)form_GCC.numericUpDown_songDifficulty4.Value);
+                if (platform == 2)
+                {
+                    difficulties.Add((int)form_GCC.numericUpDown_songDifficulty5.Value);
+                    difficulties.Add((int)form_GCC.numericUpDown_songDifficulty6.Value);
+                    difficulties.Add((int)form_GCC.numericUpDown_songDifficulty7.Value);
+                }
+                // Song BPM
+                BPM = form_GCC.textBox_songBPM.Text;
+
+                // Song BGM
+                BGM = form_GCC.textBox_songBGM.Text;
+                BGM_ext[0] = form_GCC.textBox_songBGM_ext1.Text;
+                BGM_ext[1] = form_GCC.textBox_songBGM_ext2.Text;
+                BGM_ext[2] = form_GCC.textBox_songBGM_ext3.Text;
+                BGM_ext[3] = form_GCC.textBox_songBGM_ext4.Text;
+                BGM_ext[4] = form_GCC.textBox_songBGM_ext5.Text;
+                BGM_ext[5] = form_GCC.textBox_songBGM_ext6.Text;
+                BGM_ext[6] = form_GCC.textBox_songBGM_ext7.Text;
+                BGM_ext[7] = form_GCC.textBox_songBGM_ext8.Text;
+
+
+                // Song GameData
+                gameData[0] = form_GCC.textBox_songDifficulty1.Text;
+                gameData[1] = form_GCC.textBox_songDifficulty2.Text;
+                gameData[2] = form_GCC.textBox_songDifficulty3.Text;
+                gameData[3] = form_GCC.textBox_songDifficulty4.Text;
+
+                // Song Ver
+                ver = form_GCC.textBox_songVer.Text;
+
+                // Flags
+                if (platform == 2)
+                {
+                    if (form_GCC.checkBox_unlocked.Checked)
+                    {
+                        additional_data[0] = 0x01;
+                    }
+                    else
+                    {
+                        additional_data[0] = 0x00;
+                    }
+                    if (form_GCC.checkBox_beginner.Checked)
+                    {
+                        additional_data[1] = 0x01;
+                    }
+                    else
+                    {
+                        additional_data[1] = 0x00;
+                    }
+                }
+                else
+                {
+                    if (form_GCC.checkBox_unlocked.Checked)
+                    {
+                        additional_data[4] = 0x01;
+                    }
+                    else
+                    {
+                        additional_data[4] = 0x00;
+                    }
+                    if (form_GCC.checkBox_beginner.Checked)
+                    {
+                        additional_data[5] = 0x01;
+                    }
+                    else
+                    {
+                        additional_data[5] = 0x00;
+                    }
+                }
+
+                dlc = form_GCC.checkBox_DLC_Switch.Checked;
+
+
+                UpdateDatabase(1);
+
+
+
+            }
+            catch (Exception e)
+            {
+                MessageHandler.Show("Creation of the new song failed:\r\n " + e.Message + "\r\n", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                form_GCC.result += "Creation of the new song failed: " + e.Message + "\r\n";
+
+            }
+        }
+
+        public void NewSong(int Platform, ushort total, bool merged=false, bool convert = true)
+        {
 
 
             try
@@ -251,15 +374,21 @@ namespace Groove_Coaster_Converter.Class
                 id = total;
 
                 // Song Name
-                if(Args.songNameData.Length > 0)
+                if (convert)
                 {
-                    names[0] = Path.GetFileName(Args.songNameData);
+                    if (Args.songNameData.Length > 0)
+                    {
+                        names[0] = Path.GetFileName(Args.songNameData);
+                    }
+                    else
+                    {
+                        names[0] = Path.GetFileName(form_GCC.textBox_Data.Text);
+                    }
+
                 }
                 else
-                {
-                    names[0] = Path.GetFileName(form_GCC.textBox_Data.Text);
-                }
-                
+                    names[0] = "New Song";
+
                 if (Platform == 2)
                 {
                     names[1] = "Name 2";
@@ -288,7 +417,7 @@ namespace Groove_Coaster_Converter.Class
                 data = "Data";
 
                 // Song Genre
-                genre = form_GCC.comboBox_Genres.SelectedIndex;
+                genre = 0;
 
                 // Song Timer
                 timer = "0:00";
@@ -325,8 +454,8 @@ namespace Groove_Coaster_Converter.Class
 
 
                 // Song BGM
-                String path = Path.GetFileNameWithoutExtension(form_GCC.textBox_FileBGM.Text);
-                BGM = path.Remove(path.Length-4, 4);
+                
+                BGM = "bgm";
                 if (merged)
                 {
                     BGM = "m_" + BGM;
@@ -348,11 +477,10 @@ namespace Groove_Coaster_Converter.Class
 
 
                 // Song GameData
-                List<String> tempstring = Program.songDatas;
 
                 if (difficulties[0] > 0)
                 {
-                    gameData[0] = tempstring[0];
+                    gameData[0] = "data easy";
                 }
                 else
                 {
@@ -360,7 +488,7 @@ namespace Groove_Coaster_Converter.Class
                 }
                 if (difficulties[1] > 0)
                 {
-                    gameData[1] = tempstring[2];
+                    gameData[1] = "data normal";
                 }
                 else
                 {
@@ -368,7 +496,7 @@ namespace Groove_Coaster_Converter.Class
                 }
                 if (difficulties[2] > 0)
                 {
-                    gameData[2] = tempstring[1];
+                    gameData[2] = "data hard";
                 }
                 else
                 {
@@ -376,15 +504,7 @@ namespace Groove_Coaster_Converter.Class
                 }
                 if (difficulties[3] > 0)
                 {
-                    if(tempstring.Count == 3)
-                    {
-                        gameData[3] =  tempstring[1];
-                        difficulties[3] = 0;
-                    }
-                    else
-                    {
-                        gameData[3] =  tempstring[3];
-                    }
+                    gameData[3] = "data master";
                 }
                 else
                 {
@@ -406,7 +526,7 @@ namespace Groove_Coaster_Converter.Class
                 {
                     additional_data.AddRange(GC4EX_flagLockedBeginner);
                 }
-                
+                dlc = false;
 
                 UpdateDatabase(1);
 
@@ -535,7 +655,7 @@ namespace Groove_Coaster_Converter.Class
                     ver = null;
                     additional_data.AddRange(GC4EX_flagLockedBeginner);
                 }
-
+                dlc = false;
 
                 UpdateDatabase(2, true, file, done);
 
