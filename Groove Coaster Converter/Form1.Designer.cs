@@ -1302,7 +1302,7 @@
             this.comboBox_SystemStageParam.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox_SystemStageParam.FormattingEnabled = true;
             this.comboBox_SystemStageParam.Items.AddRange(new object[] {
-            "AC GC4 (EX/MAX)",
+            "AC GC3/GC4",
             "AC GC2",
             "Switch"});
             this.comboBox_SystemStageParam.Location = new System.Drawing.Point(400, 30);
