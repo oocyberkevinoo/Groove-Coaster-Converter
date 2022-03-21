@@ -881,6 +881,8 @@ namespace Groove_Coaster_Converter
                 songs.Add(new Song());
                 songs[i].NewSong(comboBox_SystemStageParam.SelectedIndex, (ushort)listBox_StageParam.Items.Count, false, false);
                 ReloadSongList();
+                listBox_StageParam.SetSelected(0, true);
+                SelectSong();
                 //songs[i].CreateSong(comboBox_SystemStageParam.SelectedIndex);
             }
         }

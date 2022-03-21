@@ -1302,12 +1302,12 @@
             this.comboBox_SystemStageParam.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox_SystemStageParam.FormattingEnabled = true;
             this.comboBox_SystemStageParam.Items.AddRange(new object[] {
-            "AC GC4EX",
+            "AC GC4 (EX/MAX)",
             "AC GC2",
             "Switch"});
             this.comboBox_SystemStageParam.Location = new System.Drawing.Point(400, 30);
             this.comboBox_SystemStageParam.Name = "comboBox_SystemStageParam";
-            this.comboBox_SystemStageParam.Size = new System.Drawing.Size(100, 21);
+            this.comboBox_SystemStageParam.Size = new System.Drawing.Size(136, 21);
             this.comboBox_SystemStageParam.TabIndex = 20;
             this.comboBox_SystemStageParam.SelectedIndexChanged += new System.EventHandler(this.comboBox_SystemStageParam_SelectedIndexChanged);
             // 
