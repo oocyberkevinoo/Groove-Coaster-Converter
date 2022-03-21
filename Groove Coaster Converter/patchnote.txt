@@ -1,5 +1,9 @@
-Groove Coaster Converter ALPHA 0.3.3 - PatchNote
+Groove Coaster Converter ALPHA 0.3.4 - PatchNote
 by CyberKevin
+
+0.3.4 - 21/03/2022
+- select correctly the new stage entry when you create a new one
+- just renamed GC4EX to show it support 4MAX too
 
 0.3.3 - 15/02/2022
 - Convert files without updating stage_param
