@@ -1,5 +1,11 @@
-Groove Coaster Converter ALPHA 0.3.4 - PatchNote
+Groove Coaster Converter ALPHA 0.3.6 - PatchNote
 by CyberKevin
+
+0.3.6 - 06/06/2023
+- Preview time can be adjusted
+
+0.3.5 - 21/03/2022
+- No longer open File Select dialog at application folder
 
 0.3.4 - 21/03/2022
 - select correctly the new stage entry when you create a new one

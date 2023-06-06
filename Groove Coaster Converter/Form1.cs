@@ -156,7 +156,9 @@ namespace Groove_Coaster_Converter
             textBox_songBGM_ext8.Text = songs[song_id].BGM_ext[7];
             textBox_songBPM.Text = songs[song_id].BPM;
             textBox_songTimer.Text = songs[song_id].timer;
-            textBox_songVer.Text = songs[song_id].ver;
+            textBox_previewStart.Text = songs[song_id].previewStartMs.ToString();
+            textBox_previewEnd.Text = songs[song_id].previewEndMs.ToString();
+            textBox_songVer.Text = songs[song_id].inputOffset;
             comboBox_songGenre.SelectedIndex = songs[song_id].genre;
             numericUpDown_songDifficulty1.Value = songs[song_id].difficulties[0];
             numericUpDown_songDifficulty2.Value = songs[song_id].difficulties[1];
@@ -589,7 +591,7 @@ namespace Groove_Coaster_Converter
         {
             textBox_FileBGM.Text = FileSelect("Audio File",
                 "Audio file (wav, OGG)|*.wav;*.ogg|All files (*.*)|*.*", 
-                Application.StartupPath, false, textBox_FileBGM.Text);
+                "", false, textBox_FileBGM.Text);
             
 
         }
@@ -597,7 +599,7 @@ namespace Groove_Coaster_Converter
         {
             textBox_FileSHOT.Text = FileSelect("Audio File",
                "Audio file (wav, OGG)|*.wav;*.ogg|All files (*.*)|*.*",
-               Application.StartupPath, false, textBox_FileSHOT.Text);
+               "", false, textBox_FileSHOT.Text);
 
         }
 
@@ -605,7 +607,7 @@ namespace Groove_Coaster_Converter
         {
             textBox_output.Text = FileSelect("",
                 "",
-                Application.StartupPath, true, textBox_output.Text);
+                "", true, textBox_output.Text);
             // folderBrowserDialog1.ShowDialog();
             // textBox_output.Text = folderBrowserDialog1.SelectedPath;
         }
@@ -614,7 +616,7 @@ namespace Groove_Coaster_Converter
         {
             textBox_Data.Text = FileSelect("",
                 "",
-                Application.StartupPath, true, textBox_Data.Text);
+                "", true, textBox_Data.Text);
         }
 
         private void comboBox_Mode_SelectedIndexChanged(object sender, EventArgs e)

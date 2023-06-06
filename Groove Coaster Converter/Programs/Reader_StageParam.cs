@@ -156,16 +156,24 @@ namespace Groove_Coaster_Converter.Programs
                         song.offsets[15] = cursor;
                         song.BPM = binReader.ReadString();
                         //result += "Song BPM: " + binReader.ReadString() + Position(cursor) + "\r\n";
-                    
+
                         // WHAT IS THIS ???
-                        if(Platform == 2)
+                        if (Platform == 2)
                         {
-                            song.unknown.AddRange(binReader.ReadBytes(23));
+                            song.additional_informations.AddRange(binReader.ReadBytes(23));
                         }
                         else
                         {
-                            song.unknown.AddRange(binReader.ReadBytes(22));
+                            song.additional_informations.AddRange(binReader.ReadBytes(22));
                         }
+
+                        // Preview
+
+                        song.previewStartMs = ToInt32BigEndian(song.additional_informations.ToArray(), 12);
+                        song.previewEndMs = ToInt32BigEndian(song.additional_informations.ToArray(), 16);
+
+
+                        
 
                         // Song BGM
                         cursor = binReader.BaseStream.Position;
@@ -245,7 +253,7 @@ namespace Groove_Coaster_Converter.Programs
                         {
                             cursor = binReader.BaseStream.Position;
                             song.offsets[21] = cursor;
-                            song.ver = binReader.ReadString();
+                            song.inputOffset = binReader.ReadString();
                             //result += "Ver? " + binReader.ReadString() + Position(cursor) + "\r\n";
 
                             dif = 2;
@@ -259,7 +267,7 @@ namespace Groove_Coaster_Converter.Programs
                         {
                             dif = 8;
                         }
-                        song.additional_data.AddRange(binReader.ReadBytes(dif));  // WHAT IS THIS ???
+                        song.additional_data.AddRange(binReader.ReadBytes(dif));
                         int test_DLC = binReader.PeekChar();
                         if (test_DLC == 0x01 || test_DLC == 0x02)
                         {
@@ -451,7 +459,7 @@ namespace Groove_Coaster_Converter.Programs
                 {
                     binWriter.Write((Byte)0x00);
                 }*/
-                binWriter.Write(song.unknown.ToArray());
+                binWriter.Write(song.additional_informations.ToArray());
 
                 // Song BGM
                 binWriter.Write(song.BGM);
@@ -509,7 +517,7 @@ namespace Groove_Coaster_Converter.Programs
                 binWriter.Write(song.additional_string);
                 if (Platform == 2)
                 {
-                    binWriter.Write(song.ver);
+                    binWriter.Write(song.inputOffset);
                     dif = 2;
                 }
                 else if(Platform == 1)
@@ -591,7 +599,10 @@ namespace Groove_Coaster_Converter.Programs
             return " | at Offset " + (0x00 + (position));
         }
 
-        
+        public static int ToInt32BigEndian(byte[] buf, int i)
+        {
+            return (buf[i] << 24) | (buf[i + 1] << 16) | (buf[i + 2] << 8) | buf[i + 3];
+        }
 
     }
 }

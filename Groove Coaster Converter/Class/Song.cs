@@ -13,26 +13,33 @@ namespace Groove_Coaster_Converter.Class
     class Song
     {
 
+
+        // Song structure
         public uint id;
         public int unique_id;
-        public int platform;
+        public int platform; // 2 = Switch
 
         public String[] names = new string[10];
         public String[] extras = new string[10];
         public String author;
         public String data;
-        public int genre;
+        public int genre; // Related to SFX/Visual???
         public String timer;
         public List<int> difficulties = new List<int>();
         public String BPM;
         public String BGM;
         public String[] BGM_ext = new string[10];
         public String[] gameData = new String[4];
-        public String ver;
+        public String inputOffset;
+        public int previewStartMs;
+        public int previewEndMs;
 
         public String additional_string;
-        public List<Byte> unknown = new List<Byte>();
+        public List<Byte> additional_informations = new List<Byte>();
         public List<Byte> additional_data = new List<Byte>();
+
+
+
 
         public long[] offsets = new long[25];
         public long[] rangeOffsets = new long[2];
@@ -128,10 +135,24 @@ namespace Groove_Coaster_Converter.Class
                 gameData[3] = form_GCC.textBox_songDifficulty4.Text;
 
                 // Song Ver
-                ver = form_GCC.textBox_songVer.Text;
+                inputOffset = form_GCC.textBox_songVer.Text;
+
+                // Preview
+                previewStartMs = int.Parse(form_GCC.textBox_previewStart.Text);
+                previewEndMs = int.Parse(form_GCC.textBox_previewEnd.Text);
+                byte[] temp = BitConverter.GetBytes(previewStartMs);
+                additional_informations[15] = temp[0];
+                additional_informations[14] = temp[1];
+                additional_informations[13] = temp[2];
+                additional_informations[12] = temp[3];
+                temp = BitConverter.GetBytes(previewEndMs);
+                additional_informations[19] = temp[0];
+                additional_informations[18] = temp[1];
+                additional_informations[17] = temp[2];
+                additional_informations[16] = temp[3];
 
                 // Flags
-                if(platform == 2)
+                if (platform == 2)
                 {
                     if (form_GCC.checkBox_unlocked.Checked)
                     {
@@ -271,6 +292,10 @@ namespace Groove_Coaster_Converter.Class
                 // Song Timer
                 timer = form_GCC.textBox_songTimer.Text;
 
+                // Preview
+                previewStartMs = int.Parse(form_GCC.textBox_previewStart.Text);
+                previewEndMs = int.Parse(form_GCC.textBox_previewEnd.Text);
+
                 // Song Difficulties
                 difficulties.Add((int)form_GCC.numericUpDown_songDifficulty1.Value);
                 difficulties.Add((int)form_GCC.numericUpDown_songDifficulty2.Value);
@@ -304,7 +329,7 @@ namespace Groove_Coaster_Converter.Class
                 gameData[3] = form_GCC.textBox_songDifficulty4.Text;
 
                 // Song Ver
-                ver = form_GCC.textBox_songVer.Text;
+                inputOffset = form_GCC.textBox_songVer.Text;
 
                 // Flags
                 if (platform == 2)
@@ -422,6 +447,10 @@ namespace Groove_Coaster_Converter.Class
                 // Song Timer
                 timer = "0:00";
 
+                // Preview
+                previewStartMs = 60000;
+                previewEndMs = 90000;
+
                 // Song Difficulies
                 int dif = 4;
                 if (Platform == 2)
@@ -442,12 +471,12 @@ namespace Groove_Coaster_Converter.Class
                 if (Platform == 2)
                 {
                     
-                    unknown.AddRange(switch_flagUnknown);
+                    additional_informations.AddRange(switch_flagUnknown);
                 }
                 else
                 {
                     
-                    unknown.AddRange(GC2_flagUnknown);
+                    additional_informations.AddRange(GC2_flagUnknown);
 
                 }
                 
@@ -514,7 +543,7 @@ namespace Groove_Coaster_Converter.Class
                 additional_string = "";
                 if (Platform == 2)
                 {
-                    ver = "1.3";
+                    inputOffset = "1.3";
                     additional_data.AddRange(switch_flagLockedBeginner);
                 }
                 else if (Platform == 1)
@@ -602,18 +631,19 @@ namespace Groove_Coaster_Converter.Class
                 // Song BPM
                 BPM = id.ToString();
 
-                //binReader.ReadBytes(22);  // WHAT IS THIS ???
-                unknown.Clear();
+                // WHAT IS THIS ??? (it's additional information, DUH. Certainly for default values like SFX, VFX)
+                //additional_informations.Clear();
                 if (Platform == 2)
                 {
-
-                    unknown.AddRange(switch_flagUnknown);
+                    if (additional_informations.Count == 22)
+                        additional_informations.Add(0x00);
+                    //additional_informations.AddRange(switch_flagUnknown);
                 }
                 else
                 {
-
-                    unknown.AddRange(GC2_flagUnknown);
-
+                    if (additional_informations.Count == 23)
+                        additional_informations.RemoveAt(additional_informations.Count-1);
+                    //additional_informations.AddRange(GC2_flagUnknown);
                 }
 
 
@@ -641,18 +671,18 @@ namespace Groove_Coaster_Converter.Class
                 additional_data.Clear();
                 if (Platform == 2)
                 {
-                    ver = "1.3";
+                    inputOffset = "1.3";
                     additional_data.AddRange(switch_flagLockedBeginner);
                 }
                 else if (Platform == 1)
                 {
-                    ver = null;
+                    inputOffset = null;
                     additional_data.AddRange(GC2_flagLockedBeginner);
 
                 }
                 else
                 {
-                    ver = null;
+                    inputOffset = null;
                     additional_data.AddRange(GC4EX_flagLockedBeginner);
                 }
                 dlc = false;

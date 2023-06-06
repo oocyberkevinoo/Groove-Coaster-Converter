@@ -152,6 +152,11 @@
             this.button_about = new System.Windows.Forms.Button();
             this.button_update_stageparam = new System.Windows.Forms.Button();
             this.button_createSong = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label24 = new System.Windows.Forms.Label();
+            this.textBox_previewStart = new System.Windows.Forms.TextBox();
+            this.label25 = new System.Windows.Forms.Label();
+            this.textBox_previewEnd = new System.Windows.Forms.TextBox();
             this.statusStrip1.SuspendLayout();
             this.groupBox_StageEditor.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -176,6 +181,7 @@
             this.panel7.SuspendLayout();
             this.panel8.SuspendLayout();
             this.panel9.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // listBox_StageParam
@@ -579,6 +585,7 @@
             // tab_SongEditor
             // 
             this.tab_SongEditor.AutoScroll = true;
+            this.tab_SongEditor.Controls.Add(this.groupBox1);
             this.tab_SongEditor.Controls.Add(this.textBox_songBGM_ext8);
             this.tab_SongEditor.Controls.Add(this.checkBox_DLC_Switch);
             this.tab_SongEditor.Controls.Add(this.textBox_songBGM_ext7);
@@ -1351,6 +1358,55 @@
             this.button_createSong.UseVisualStyleBackColor = true;
             this.button_createSong.Click += new System.EventHandler(this.button_createSong_Click);
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.textBox_previewEnd);
+            this.groupBox1.Controls.Add(this.label25);
+            this.groupBox1.Controls.Add(this.textBox_previewStart);
+            this.groupBox1.Controls.Add(this.label24);
+            this.groupBox1.Location = new System.Drawing.Point(151, 190);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(187, 71);
+            this.groupBox1.TabIndex = 32;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Preview (in ms)";
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(39, 23);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(32, 13);
+            this.label24.TabIndex = 4;
+            this.label24.Text = "Start:";
+            this.label24.Click += new System.EventHandler(this.label_ID_Click);
+            // 
+            // textBox_previewStart
+            // 
+            this.textBox_previewStart.Location = new System.Drawing.Point(81, 20);
+            this.textBox_previewStart.Name = "textBox_previewStart";
+            this.textBox_previewStart.Size = new System.Drawing.Size(100, 20);
+            this.textBox_previewStart.TabIndex = 5;
+            this.textBox_previewStart.TextChanged += new System.EventHandler(this.textBox_ID_TextChanged);
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(39, 49);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(29, 13);
+            this.label25.TabIndex = 4;
+            this.label25.Text = "End:";
+            this.label25.Click += new System.EventHandler(this.label_ID_Click);
+            // 
+            // textBox_previewEnd
+            // 
+            this.textBox_previewEnd.Location = new System.Drawing.Point(81, 46);
+            this.textBox_previewEnd.Name = "textBox_previewEnd";
+            this.textBox_previewEnd.Size = new System.Drawing.Size(100, 20);
+            this.textBox_previewEnd.TabIndex = 5;
+            this.textBox_previewEnd.TextChanged += new System.EventHandler(this.textBox_ID_TextChanged);
+            // 
             // Form_GCC
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -1417,6 +1473,8 @@
             this.panel8.PerformLayout();
             this.panel9.ResumeLayout(false);
             this.panel9.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1546,6 +1604,11 @@
         public System.Windows.Forms.CheckBox checkBox_DLC_Switch;
         private System.Windows.Forms.Button button_update_stageparam;
         private System.Windows.Forms.Button button_createSong;
+        private System.Windows.Forms.GroupBox groupBox1;
+        public System.Windows.Forms.TextBox textBox_previewEnd;
+        private System.Windows.Forms.Label label25;
+        public System.Windows.Forms.TextBox textBox_previewStart;
+        private System.Windows.Forms.Label label24;
     }
 }
 
