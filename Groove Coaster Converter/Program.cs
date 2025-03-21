@@ -13,7 +13,7 @@ namespace Groove_Coaster_Converter
     {
         public static string[] @params;
 
-        public static bool darkUI = true;
+        public static bool darkUI = false;
         public static string title = "Groove Coaster Converter";
         public static readonly string songFolder = @"songs";
         public static readonly string conversionFolder = @"songs\Converted";
