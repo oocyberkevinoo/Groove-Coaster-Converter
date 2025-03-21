@@ -23,286 +23,324 @@ namespace Groove_Coaster_Converter.Programs
         {
             form_GCC.liste.Clear();
             BinaryReader binReader = new BinaryReader(File.Open(file, FileMode.Open), Encoding.UTF8);
-
-            // Number of ID
-            form_GCC.total_entries = ReverseBytes(binReader.ReadUInt16());
-            songs = new List<Song>();
-            //result += "StageParam contain " + ReverseBytes(binReader.ReadUInt16()) + " ID(s)\r\n";
-
-            for (int i = 1; i > 0; i++)
+            try
             {
 
-                try
+            
+                // Number of ID
+                form_GCC.total_entries = ReverseBytes(binReader.ReadUInt16());
+                songs = new List<Song>();
+                //result += "StageParam contain " + ReverseBytes(binReader.ReadUInt16()) + " ID(s)\r\n";
+
+                for (int i = form_GCC.total_entries; i > 0; i--)
                 {
-                    // Start of the song!
-                    Song song = new Song();
-                    cursor = binReader.BaseStream.Position;
-                    song.rangeOffsets[0] = cursor;
-                    song.platform = Platform;
 
-                    // Song ID
-                    cursor = binReader.BaseStream.Position;
-                    song.offsets[0] = cursor;
-                    song.id = ReverseBytes(binReader.ReadUInt32());
-                    song.unique_id = i;
-                    form_GCC.liste_id.Add(song.id);
-                    //result += "Song " + ReverseBytes(binReader.ReadUInt32()) + (Position(cursor)) + "\r\n";
-
-                    // Song Name
-                    cursor = binReader.BaseStream.Position;
-                    song.offsets[1] = cursor;
-                    song.names[0] = binReader.ReadString();
-                    form_GCC.liste.Add(song.names[0]);
-                    //result += "Song Name 1: " + song.names[0] + Position(cursor) + "\r\n";
-                    cursor = binReader.BaseStream.Position;
-                    if(Platform == 2)
-                    {
-                        song.offsets[2] = cursor;
-                        song.names[1] = binReader.ReadString();
-                        //result += "Song Name 2: " + binReader.ReadString() + Position(cursor) + "\r\n";
-                        cursor = binReader.BaseStream.Position;
-                    }
-                    song.offsets[3] = cursor;
-                    song.names[2] = binReader.ReadString();
-                    //result += "Song Name short: " + binReader.ReadString() + Position(cursor) + "\r\n";
-                    cursor = binReader.BaseStream.Position;
-                    song.offsets[4] = cursor;
                     try
                     {
-                        
-                        song.names[3] = binReader.ReadString();
-                        //result += "Song Author: " + binReader.ReadString() + Position(cursor) + "\r\n";
-
-                    }
-                    catch (Exception)
-                    {
-               
-                        //result += "Song Author: ERROR- Can't decrypt Author name, try to edit this song manually...";
-                        binReader.BaseStream.Position = cursor;
-                        binReader.ReadBytes(binReader.ReadByte());
-                    }
-                    cursor = binReader.BaseStream.Position;
-                    song.offsets[5] = cursor;
-                    song.names[4] = binReader.ReadString();
-                    //result += "Song Name 3: " + binReader.ReadString() + Position(cursor) + "\r\n";
-                    cursor = binReader.BaseStream.Position;
-
-                    if (Platform == 2)
-                    {
-                        song.offsets[6] = cursor;
-                        song.extras[0] = binReader.ReadString();
-                        //result += "Song Ext: " + binReader.ReadString() + Position(cursor) + "\r\n";
+                        // Start of the song!
+                        Song song = new Song();
                         cursor = binReader.BaseStream.Position;
-                        song.offsets[7] = cursor;
-                        song.extras[1] = binReader.ReadString();
-                        //result += "Song Ext: " + binReader.ReadString() + Position(cursor) + "\r\n";
+                        song.rangeOffsets[0] = cursor;
+                        song.platform = Platform;
+
+                        // Song ID
                         cursor = binReader.BaseStream.Position;
-                        song.offsets[8] = cursor;
-                        song.extras[2] = binReader.ReadString();
-                        //result += "Song Ext: " + binReader.ReadString() + Position(cursor) + "\r\n";
+                        song.offsets[0] = cursor;
+                        song.id = ReverseBytes(binReader.ReadUInt32());
+                        song.unique_id = i;
+                        form_GCC.liste_id.Add(song.id);
+                        //result += "Song " + ReverseBytes(binReader.ReadUInt32()) + (Position(cursor)) + "\r\n";
+
+                        // Song Name
                         cursor = binReader.BaseStream.Position;
-                        song.offsets[9] = cursor;
-                        song.extras[3] = binReader.ReadString();
-                        //result += "Song Ext: " + binReader.ReadString() + Position(cursor) + "\r\n";
+                        song.offsets[1] = cursor;
+                        //song.names[0] = binReader.ReadString();
+                        song.names[0] = ReadLongString(binReader);
+                        form_GCC.liste.Add(song.names[0]);
+                        //result += "Song Name 1: " + song.names[0] + Position(cursor) + "\r\n";
                         cursor = binReader.BaseStream.Position;
-                        song.offsets[10] = cursor;
-                        song.extras[4] = binReader.ReadString();
-                        //result += "Song Ext: " + binReader.ReadString() + Position(cursor) + "\r\n";
-                        cursor = binReader.BaseStream.Position;
-                    }
-
-                    // Song data
-                    cursor = binReader.BaseStream.Position;
-                    song.offsets[11] = cursor;
-                    song.data = binReader.ReadString();
-                    //result += "Song data: " + binReader.ReadString() + Position(cursor) + "\r\n";
-                    
-
-                    // Song Genre
-                    cursor = binReader.BaseStream.Position;
-                    song.offsets[12] = cursor;
-                    song.genre = binReader.ReadByte();
-                    
-                    //result += "Song Genre: " + ReadGenre(binReader.ReadByte()) + Position(cursor) + "\r\n";
-
-                    // Song Timer
-                    cursor = binReader.BaseStream.Position;
-                    song.offsets[13] = cursor;
-                    song.timer = binReader.ReadString();
-                    //result += "Song timer: " + binReader.ReadString() + Position(cursor) + "\r\n";
-
-                    // Song Difficulies
-                    cursor = binReader.BaseStream.Position;
-                    song.offsets[14] = cursor;
-                    int dif = 4;
-                    if(Platform == 2)
-                    {
-                        dif = 8;
-                    }
-
-                    int[] difficulties = new int[dif];
-                    for (int i2 = 0; i2 < dif; i2++)
-                    {
-                        difficulties[i2] = binReader.ReadByte();
-                    }
-
-                    song.difficulties.AddRange(difficulties);
-
-                    // Song BPM
-                    cursor = binReader.BaseStream.Position;
-                    song.offsets[15] = cursor;
-                    song.BPM = binReader.ReadString();
-                    //result += "Song BPM: " + binReader.ReadString() + Position(cursor) + "\r\n";
-                    
-                    // WHAT IS THIS ???
-                    if(Platform == 2)
-                    {
-                        song.unknown.AddRange(binReader.ReadBytes(23));
-                    }
-                    else
-                    {
-                        song.unknown.AddRange(binReader.ReadBytes(22));
-                    }
-
-                    // Song BGM
-                    cursor = binReader.BaseStream.Position;
-                    song.offsets[16] = cursor;
-                    song.BGM = binReader.ReadString();
-                    //result += "Song Audio File: " + binReader.ReadString() + Position(cursor) + "\r\n";
                         if(Platform == 2)
-                    {
-                        dif = 1;
-                    }
-                    else
-                    {
-                        dif = 8;
-                    }
-                    for (int i2 = 0; i2 < dif; i2++)
-                    {
-                        song.BGM_ext[i2] = binReader.ReadString();
-                    }
-
-
-
-                    // Song GameData
-                    //result += "\r\nSong Game Data:\r\n";
-                    bool noDifficulties = false;
-                    if(difficulties[0] < 1 && difficulties[1] < 1 && difficulties[2] < 1)
-                    {
-                        noDifficulties = true;
-                    }
-
-                    if (difficulties[0] > 0 || noDifficulties)
-                    {
-                        cursor = binReader.BaseStream.Position;
-                        song.offsets[17] = cursor;
-                        song.gameData[0] = binReader.ReadString();
-                        //result += "Easy - " + binReader.ReadString() + Position(cursor) + "\r\n";
-                    }
-                    else
-                    {
-                        binReader.ReadByte();
-                    }
-                    if (difficulties[1] > 0 || noDifficulties)
-                    {
-                        cursor = binReader.BaseStream.Position;
-                        song.offsets[18] = cursor;
-                        song.gameData[1] = binReader.ReadString();
-                        //result += "Normal - " + binReader.ReadString() + Position(cursor) + "\r\n";
-                    }
-                    else
-                    {
-                        binReader.ReadByte();
-                    }
-                    if (difficulties[2] > 0 || noDifficulties)
-                    {
-                        cursor = binReader.BaseStream.Position;
-                        song.offsets[19] = cursor;
-                        song.gameData[2] = binReader.ReadString();
-                        //result += "Hard - " + binReader.ReadString() + Position(cursor) + "\r\n";
-                    }
-                    else
-                    {
-                        binReader.ReadByte();
-                    }
-                    if (difficulties[3] > 0)
-                    {
-                        cursor = binReader.BaseStream.Position;
-                        song.offsets[20] = cursor;
-                        song.gameData[3] = binReader.ReadString();
-                        //result += "Extra/Master - " + binReader.ReadString() + Position(cursor) + "\r\n";
-                    }
-                    else
-                    {
-                        binReader.ReadByte();
-                    }
-                    song.additional_string = binReader.ReadString();
-
-                    if(Platform == 2)
-                    {
-                        cursor = binReader.BaseStream.Position;
-                        song.offsets[21] = cursor;
-                        song.ver = binReader.ReadString();
-                        //result += "Ver? " + binReader.ReadString() + Position(cursor) + "\r\n";
-
-                        dif = 2;
-                    }
-                    else if(Platform == 1)
-                    {
-                        dif = 7;
-
-                    }
-                    else
-                    {
-                        dif = 8;
-                    }
-                    song.additional_data.AddRange(binReader.ReadBytes(dif));  // WHAT IS THIS ???
-                    cursor = binReader.BaseStream.Position;
-                    song.rangeOffsets[1] = cursor;
-
-
-                    /*
-                     * 
-                     * TEMP OPERATION
-                     * 
-                     */
-                     
-                    /*
-                        string currentContent = String.Empty;
-                        if (File.Exists(@".\liste.txt"))
                         {
-                            currentContent = File.ReadAllText(@".\liste.txt");
+                            song.offsets[2] = cursor;
+                            song.names[1] = ReadLongString(binReader);
+                            //result += "Song Name 2: " + binReader.ReadString() + Position(cursor) + "\r\n";
+                            cursor = binReader.BaseStream.Position;
                         }
-                        if(song.genre ==1 || song.genre ==2 || song.genre ==7)
-                        File.WriteAllText(@".\liste.txt", song.BGM+" - "+song.gameData[0]+"\r\n" + currentContent);
+                        song.offsets[3] = cursor;
+                        song.names[2] = ReadLongString(binReader);
+                        //result += "Song Name short: " + binReader.ReadString() + Position(cursor) + "\r\n";
+                        cursor = binReader.BaseStream.Position;
+                        song.offsets[4] = cursor;
+                        try
+                        {
 
-                    /*
-                     *  TEMP OPERATION END
-                     */
-                    songs.Add(song);
 
-                }
-                catch (Exception e)
-                {
-                    form_GCC.result += "Error: "+i+" - " + e.Message+"\r\n";
+                            //song.names[3] = binReader.ReadString();
+                            song.names[3] = ReadLongString(binReader);
+
+                            //result += "Song Author: " + binReader.ReadString() + Position(cursor) + "\r\n";
+
+                        }
+                        catch (Exception)
+                        {
+               
+                            //result += "Song Author: ERROR- Can't decrypt Author name, try to edit this song manually...";
+                            binReader.BaseStream.Position = cursor;
+                            binReader.ReadBytes(binReader.ReadByte());
+                        }
+                        cursor = binReader.BaseStream.Position;
+                        song.offsets[5] = cursor;
+                        song.names[4] = ReadLongString(binReader);
+                        //result += "Song Name 3: " + binReader.ReadString() + Position(cursor) + "\r\n";
+                        cursor = binReader.BaseStream.Position;
+
+                        if (Platform == 2)
+                        {
+                            song.offsets[6] = cursor;
+                            song.extras[0] = ReadLongString(binReader);
+                            //result += "Song Ext: " + binReader.ReadString() + Position(cursor) + "\r\n";
+                            cursor = binReader.BaseStream.Position;
+                            song.offsets[7] = cursor;
+                            song.extras[1] = ReadLongString(binReader);
+                            //result += "Song Ext: " + binReader.ReadString() + Position(cursor) + "\r\n";
+                            cursor = binReader.BaseStream.Position;
+                            song.offsets[8] = cursor;
+                            song.extras[2] = ReadLongString(binReader);
+                            //result += "Song Ext: " + binReader.ReadString() + Position(cursor) + "\r\n";
+                            cursor = binReader.BaseStream.Position;
+                            song.offsets[9] = cursor;
+                            song.extras[3] = ReadLongString(binReader);
+                            //result += "Song Ext: " + binReader.ReadString() + Position(cursor) + "\r\n";
+                            cursor = binReader.BaseStream.Position;
+                            song.offsets[10] = cursor;
+                            song.extras[4] = ReadLongString(binReader);
+                            //result += "Song Ext: " + binReader.ReadString() + Position(cursor) + "\r\n";
+                            cursor = binReader.BaseStream.Position;
+                        }
+
+                        // Song data
+                        cursor = binReader.BaseStream.Position;
+                        song.offsets[11] = cursor;
+                        song.data = ReadLongString(binReader);
+                        //result += "Song data: " + binReader.ReadString() + Position(cursor) + "\r\n";
+
+
+                        // Song Genre
+                        cursor = binReader.BaseStream.Position;
+                        song.offsets[12] = cursor;
+                        song.genre = binReader.ReadByte();
                     
-                }
+                        //result += "Song Genre: " + ReadGenre(binReader.ReadByte()) + Position(cursor) + "\r\n";
+
+                        // Song Timer
+                        cursor = binReader.BaseStream.Position;
+                        song.offsets[13] = cursor;
+                        song.timer = binReader.ReadString();
+                        //result += "Song timer: " + binReader.ReadString() + Position(cursor) + "\r\n";
+
+                        // Song Difficulies
+                        cursor = binReader.BaseStream.Position;
+                        song.offsets[14] = cursor;
+                        int dif = 4;
+                        if(Platform == 2)
+                        {
+                            dif = 8;
+                        }
+
+                        int[] difficulties = new int[dif];
+                        for (int i2 = 0; i2 < dif; i2++)
+                        {
+                            difficulties[i2] = binReader.ReadByte();
+                        }
+
+                        song.difficulties.AddRange(difficulties);
+
+                        // Song BPM
+                        cursor = binReader.BaseStream.Position;
+                        song.offsets[15] = cursor;
+                        song.BPM = binReader.ReadString();
+                        //result += "Song BPM: " + binReader.ReadString() + Position(cursor) + "\r\n";
+
+                        // WHAT IS THIS ???
+                        if (Platform == 2)
+                        {
+                            song.additional_informations.AddRange(binReader.ReadBytes(23));
+                        }
+                        else
+                        {
+                            song.additional_informations.AddRange(binReader.ReadBytes(22));
+                        }
+
+                        // Preview
+
+                        song.previewStartMs = ToInt32BigEndian(song.additional_informations.ToArray(), 12);
+                        song.previewEndMs = ToInt32BigEndian(song.additional_informations.ToArray(), 16);
+
+
+                        
+
+                        // Song BGM
+                        cursor = binReader.BaseStream.Position;
+                        song.offsets[16] = cursor;
+                        song.BGM = ReadLongString(binReader);
+                        //result += "Song Audio File: " + binReader.ReadString() + Position(cursor) + "\r\n";
+                        if (Platform == 2)
+                        {
+                            dif = 1;
+                        }
+                        else
+                        {
+                            dif = 8;
+                        }
+                        for (int i2 = 0; i2 < dif; i2++)
+                        {
+                            song.BGM_ext[i2] = binReader.ReadString();
+                        }
+
+
+
+                        // Song GameData
+                        //result += "\r\nSong Game Data:\r\n";
+                        bool noDifficulties = false;
+                        if(difficulties[0] < 1 && difficulties[1] < 1 && difficulties[2] < 1)
+                        {
+                            noDifficulties = true;
+                        }
+
+                        if (difficulties[0] > 0 || noDifficulties)
+                        {
+                            cursor = binReader.BaseStream.Position;
+                            song.offsets[17] = cursor;
+                            song.gameData[0] = ReadLongString(binReader);
+                            //result += "Easy - " + binReader.ReadString() + Position(cursor) + "\r\n";
+                        }
+                        else
+                        {
+                            binReader.ReadByte();
+                        }
+                        if (difficulties[1] > 0 || noDifficulties)
+                        {
+                            cursor = binReader.BaseStream.Position;
+                            song.offsets[18] = cursor;
+                            song.gameData[1] = binReader.ReadString();
+                            //result += "Normal - " + binReader.ReadString() + Position(cursor) + "\r\n";
+                        }
+                        else
+                        {
+                            binReader.ReadByte();
+                        }
+                        if (difficulties[2] > 0 || noDifficulties)
+                        {
+                            cursor = binReader.BaseStream.Position;
+                            song.offsets[19] = cursor;
+                            song.gameData[2] = binReader.ReadString();
+                            //result += "Hard - " + binReader.ReadString() + Position(cursor) + "\r\n";
+                        }
+                        else
+                        {
+                            binReader.ReadByte();
+                        }
+                        if (difficulties[3] > 0)
+                        {
+                            cursor = binReader.BaseStream.Position;
+                            song.offsets[20] = cursor;
+                            song.gameData[3] = binReader.ReadString();
+                            //result += "Extra/Master - " + binReader.ReadString() + Position(cursor) + "\r\n";
+                        }
+                        else
+                        {
+                            binReader.ReadByte();
+                        }
+                        song.additional_string = binReader.ReadString();
+
+                        if(Platform == 2)
+                        {
+                            cursor = binReader.BaseStream.Position;
+                            song.offsets[21] = cursor;
+                            song.inputOffset = binReader.ReadString();
+                            //result += "Ver? " + binReader.ReadString() + Position(cursor) + "\r\n";
+
+                            dif = 2;
+                        }
+                        else if(Platform == 1)
+                        {
+                            dif = 7;
+
+                        }
+                        else
+                        {
+                            dif = 8;
+                        }
+                        song.additional_data.AddRange(binReader.ReadBytes(dif));
+                        int test_DLC = binReader.PeekChar();
+                        if (test_DLC == 0x01 || test_DLC == 0x02)
+                        {
+                            binReader.ReadString();
+                            binReader.ReadString();
+                            binReader.ReadString();
+                            binReader.ReadString();
+                            binReader.ReadString();
+                            binReader.ReadString();
+                            binReader.ReadString();
+                            binReader.ReadString();
+
+                        }
+                        else
+                            song.dlc = true;
+
+                        cursor = binReader.BaseStream.Position;
+                        song.rangeOffsets[1] = cursor;
+
+
+                        /*
+                         * 
+                         * TEMP OPERATION
+                         * 
+                         */
+                         /*
+                    
+                            string currentContent = String.Empty;
+                            if (File.Exists(@".\liste.txt"))
+                            {
+                                currentContent = File.ReadAllText(@".\liste.txt");
+                            }
+                            if(song.BGM_ext[7] == "_x")
+                            File.WriteAllText(@".\liste.txt", song.BGM+song.BGM_ext[7]+" - "+song.gameData[0]+"\r\n" + currentContent);
+
+                        /*
+                         *  TEMP OPERATION END
+                         */
+                        songs.Add(song);
+
+                    }
+                    catch (Exception e)
+                    {
+                        form_GCC.result += "Error: "+i+" - " + e.Message+"\r\n";
+                    
+                    }
 
 
                
-                //result += "----\r\n\r\n";
+                    //result += "----\r\n\r\n";
 
-                if (binReader.PeekChar() == -1)
-                {
-                    i = -1;
+                    if (binReader.PeekChar() == -1)
+                    {
+                        i = -1;
+                    }
                 }
+                form_GCC.result += form_GCC.total_entries+" entries loaded.\r\n\r\n";
+                form_GCC.label_songsLoaded.Text = "Stages: "+form_GCC.total_entries;
+                form_GCC.listBox_StageParam.DataSource = null;
+                form_GCC.listBox_StageParam.DataSource = form_GCC.liste;
+                form_GCC.textBox_StageParamBytes.Text = form_GCC.result;
+                binReader.Close();
             }
-            form_GCC.result += form_GCC.total_entries+" entries loaded.\r\n\r\n";
-            form_GCC.label_songsLoaded.Text = "Stages: "+form_GCC.total_entries;
-            form_GCC.listBox_StageParam.DataSource = null;
-            form_GCC.listBox_StageParam.DataSource = form_GCC.liste;
-            form_GCC.textBox_StageParamBytes.Text = form_GCC.result;
-            binReader.Close();
+            catch (Exception)
+            {
+                binReader.Dispose();
+                binReader.Close();
+                throw;
+            }
             return songs;
         }
 
@@ -425,7 +463,7 @@ namespace Groove_Coaster_Converter.Programs
                 {
                     binWriter.Write((Byte)0x00);
                 }*/
-                binWriter.Write(song.unknown.ToArray());
+                binWriter.Write(song.additional_informations.ToArray());
 
                 // Song BGM
                 binWriter.Write(song.BGM);
@@ -483,7 +521,7 @@ namespace Groove_Coaster_Converter.Programs
                 binWriter.Write(song.additional_string);
                 if (Platform == 2)
                 {
-                    binWriter.Write(song.ver);
+                    binWriter.Write(song.inputOffset);
                     dif = 2;
                 }
                 else if(Platform == 1)
@@ -502,6 +540,20 @@ namespace Groove_Coaster_Converter.Programs
                     dif--;
                 }*/
                 binWriter.Write(song.additional_data.ToArray());
+
+                // New difficulties string for 1.0.10 WaiWai Party
+                if (!song.dlc && Platform == 2)
+                {
+                    binWriter.Write(song.difficulties[0].ToString());
+                    binWriter.Write(song.difficulties[1].ToString());
+                    binWriter.Write(song.difficulties[2].ToString());
+                    binWriter.Write(song.difficulties[3].ToString());
+                    binWriter.Write(song.difficulties[4].ToString());
+                    binWriter.Write(song.difficulties[5].ToString());
+                    binWriter.Write(song.difficulties[6].ToString());
+                    binWriter.Write("0");
+                }
+                
 
 
                 // Save song
@@ -551,7 +603,17 @@ namespace Groove_Coaster_Converter.Programs
             return " | at Offset " + (0x00 + (position));
         }
 
-        
+        public static int ToInt32BigEndian(byte[] buf, int i)
+        {
+            return (buf[i] << 24) | (buf[i + 1] << 16) | (buf[i + 2] << 8) | buf[i + 3];
+        }
+
+        public static string ReadLongString(BinaryReader binReader)
+        {
+            int charactersCount = binReader.ReadByte();
+            byte[] stringRetrievedBytes = binReader.ReadBytes(charactersCount);
+            return System.Text.Encoding.UTF8.GetString(stringRetrievedBytes);
+        }
 
     }
 }

@@ -17,6 +17,7 @@ namespace Groove_Coaster_Converter
 {
     public partial class Form_GCC : Form
     {
+        public bool dlcConvert = false;
         public bool all = false;
         public bool dark = false;
         private Form_About form_about = new Form_About();
@@ -40,7 +41,7 @@ namespace Groove_Coaster_Converter
             comboBox_songGenre.Items.AddRange(genres);
             
             EnableDisable_UI_SHOT(false);
-            tabControl_Main.TabPages.Remove(tab_StageParamConverter);
+            //tabControl_Main.TabPages.Remove(tab_StageParamConverter);
         }
 
         private void Form_GCC_Load(object sender, EventArgs e)
@@ -155,7 +156,9 @@ namespace Groove_Coaster_Converter
             textBox_songBGM_ext8.Text = songs[song_id].BGM_ext[7];
             textBox_songBPM.Text = songs[song_id].BPM;
             textBox_songTimer.Text = songs[song_id].timer;
-            textBox_songVer.Text = songs[song_id].ver;
+            textBox_previewStart.Text = songs[song_id].previewStartMs.ToString();
+            textBox_previewEnd.Text = songs[song_id].previewEndMs.ToString();
+            textBox_songVer.Text = songs[song_id].inputOffset;
             comboBox_songGenre.SelectedIndex = songs[song_id].genre;
             numericUpDown_songDifficulty1.Value = songs[song_id].difficulties[0];
             numericUpDown_songDifficulty2.Value = songs[song_id].difficulties[1];
@@ -201,6 +204,11 @@ namespace Groove_Coaster_Converter
                 {
                     checkBox_beginner.Checked = false;
                 }
+
+                if (songs[song_id].dlc)
+                    checkBox_DLC_Switch.Checked = true;
+                else
+                    checkBox_DLC_Switch.Checked = false;
             }
             else
             {
@@ -304,7 +312,7 @@ namespace Groove_Coaster_Converter
         {
             if (!File.Exists(textBox_StageParamInput.Text))
             {
-                MessageHandler.ShowError(0);
+                
                 return false;
             }
             else
@@ -315,31 +323,21 @@ namespace Groove_Coaster_Converter
         public void button_ConvertUpdate_Click(object sender, EventArgs e)
         {
             
-            bool mode = true;
+            bool mode_updater = true;
+            bool mode_converter = true;
             bool functionStart = false;
-            if (StageParamLoaded())
+            all = false;
+
+            if (StageParamLoaded() || sender == button_Convert)
             {
                 if (OutputCheck())
                 {
-                    if (sender == button_ConvertUpdate || sender == button_ConvertALL)
-                    {
-                        mode = true;
-                        if(sender == button_ConvertALL)
-                        {
-                            all = true;
-                        }
-                    }
+                    if (sender == button_ConvertALL)
+                        all = true;
                     else if (sender == button_Convert)
-                    {
-                        mode = false;
-                    }
-
-                    if (all)
-                    {
-
-                    }
-
-
+                        mode_updater = false;
+                    else if(sender == button_Update)
+                        mode_converter = false;
 
 
                     if (comboBox_Mode.SelectedIndex == 0)
@@ -354,7 +352,7 @@ namespace Groove_Coaster_Converter
                             {
                                 functionStart = true;
                                 AC_to_SWITCH converter = new AC_to_SWITCH();
-                                converter.Conversion(mode, true, comboBox_SystemStageParam.SelectedIndex);
+                                converter.Conversion(mode_updater, true, comboBox_SystemStageParam.SelectedIndex);
 
                             }
                             else if (comboBox_SystemStageParam.SelectedIndex == 0 ||
@@ -362,7 +360,7 @@ namespace Groove_Coaster_Converter
                             {
                                 functionStart = true;
                                 AC_to_AC converter = new AC_to_AC();
-                                converter.Conversion(mode, true, comboBox_SystemStageParam.SelectedIndex);
+                                converter.Conversion(mode_updater, true, comboBox_SystemStageParam.SelectedIndex);
 
                             }
                             else if (!functionStart)
@@ -391,11 +389,11 @@ namespace Groove_Coaster_Converter
                             MOBILE_to_SWITCH converter = new MOBILE_to_SWITCH();
                             if (sender.Equals(button_onlyStageParam))
                             {
-                                converter.Conversion(mode, true, true);
+                                converter.Conversion(mode_updater, true, true);
                             }
                             else
                             {
-                                converter.Conversion(mode, true);
+                                converter.Conversion(mode_updater, true);
                             }
 
                         }
@@ -414,6 +412,10 @@ namespace Groove_Coaster_Converter
 
                     
                 }
+            }
+            else
+            {
+                MessageHandler.ShowError(0);
             }
 
 
@@ -482,7 +484,7 @@ namespace Groove_Coaster_Converter
             
         }
 
-        private void button_Update_Click(object sender, EventArgs e)
+        private void button_Update_Click(object sender = null, EventArgs e = null)
         {
             if (StageParamLoaded())
             {
@@ -589,7 +591,7 @@ namespace Groove_Coaster_Converter
         {
             textBox_FileBGM.Text = FileSelect("Audio File",
                 "Audio file (wav, OGG)|*.wav;*.ogg|All files (*.*)|*.*", 
-                Application.StartupPath, false, textBox_FileBGM.Text);
+                "", false, textBox_FileBGM.Text);
             
 
         }
@@ -597,7 +599,7 @@ namespace Groove_Coaster_Converter
         {
             textBox_FileSHOT.Text = FileSelect("Audio File",
                "Audio file (wav, OGG)|*.wav;*.ogg|All files (*.*)|*.*",
-               Application.StartupPath, false, textBox_FileSHOT.Text);
+               "", false, textBox_FileSHOT.Text);
 
         }
 
@@ -605,7 +607,7 @@ namespace Groove_Coaster_Converter
         {
             textBox_output.Text = FileSelect("",
                 "",
-                Application.StartupPath, true, textBox_output.Text);
+                "", true, textBox_output.Text);
             // folderBrowserDialog1.ShowDialog();
             // textBox_output.Text = folderBrowserDialog1.SelectedPath;
         }
@@ -614,7 +616,7 @@ namespace Groove_Coaster_Converter
         {
             textBox_Data.Text = FileSelect("",
                 "",
-                Application.StartupPath, true, textBox_Data.Text);
+                "", true, textBox_Data.Text);
         }
 
         private void comboBox_Mode_SelectedIndexChanged(object sender, EventArgs e)
@@ -844,6 +846,47 @@ namespace Groove_Coaster_Converter
         private void label22_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (StageParamLoaded())
+            {
+
+                for (int i = 0; i < listBox_StageParam.Items.Count; i++)
+                {
+                    listBox_StageParam.SelectedIndex = i;
+                    SelectSong();
+                    checkBox_DLC_Switch.Checked = false;
+                    button_Update_Click();
+                }
+                dlcConvert = false;
+            }
+            dlcConvert = false;
+        }
+
+        private void checkBox_unlocked_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button_createSong_Click(object sender, EventArgs e)
+        {
+            if (StageParamLoaded())
+            {
+                int i = songs.Count;
+                songs.Add(new Song());
+                songs[i].NewSong(comboBox_SystemStageParam.SelectedIndex, (ushort)listBox_StageParam.Items.Count, false, false);
+                ReloadSongList();
+                listBox_StageParam.SetSelected(0, true);
+                SelectSong();
+                //songs[i].CreateSong(comboBox_SystemStageParam.SelectedIndex);
+            }
         }
     }
 }

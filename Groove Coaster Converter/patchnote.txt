@@ -1,5 +1,27 @@
-Groove Coaster Converter ALPHA 0.2.2 - PatchNote
+Groove Coaster Converter ALPHA 0.3.6 - PatchNote
 by CyberKevin
+
+0.3.6 - 06/06/2023
+- Preview time can be adjusted
+
+0.3.5 - 21/03/2022
+- No longer open File Select dialog at application folder
+
+0.3.4 - 21/03/2022
+- select correctly the new stage entry when you create a new one
+- just renamed GC4EX to show it support 4MAX too
+
+0.3.3 - 15/02/2022
+- Convert files without updating stage_param
+- Create new entries for songs in stage_param
+- Fixed issue after badly loaded a stage_param file
+- EXPERIMENTAL: Convert all the stage_param and files in one click (please don't use this sh*t)
+
+0.3.2 - 13/02/2022
+- Add compatibility with new Switch format (>= 1.0.10)
+- Can define a song as a Switch DLC or not (old songs are recognized as DLC)
+- Auto convert all songs to the new Switch Format (>= 1.0.10)
+- Advanced options for auto-converting stuff, extremely unstable)
 
 0.3.0 - 15/07/2020
 - Added BGM Ext editing

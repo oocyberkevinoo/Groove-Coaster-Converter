@@ -1,4 +1,4 @@
-Groove Coaster Converter ALPHA 0.2.4 - HELP
+Groove Coaster Converter ALPHA 0.3.6 - HELP
 by CyberKevin
 
 The software is still in Alpha, so there's not that much to help you for now.
@@ -37,5 +37,3 @@ A-	the Song Data folder is fully scanned to generate the Stage_Param file.
 
 Q-	Can I make DLC edit ?
 A-	Of course, the DLC (on Switch at least) use the same files to load content.
-	
-

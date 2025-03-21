@@ -72,6 +72,15 @@
             this.tabControl_Main = new System.Windows.Forms.TabControl();
             this.tab_AddSong = new System.Windows.Forms.TabPage();
             this.tab_SongEditor = new System.Windows.Forms.TabPage();
+            this.textBox_songBGM_ext8 = new System.Windows.Forms.TextBox();
+            this.checkBox_DLC_Switch = new System.Windows.Forms.CheckBox();
+            this.textBox_songBGM_ext7 = new System.Windows.Forms.TextBox();
+            this.textBox_songBGM_ext4 = new System.Windows.Forms.TextBox();
+            this.textBox_songBGM_ext6 = new System.Windows.Forms.TextBox();
+            this.textBox_songBGM_ext3 = new System.Windows.Forms.TextBox();
+            this.textBox_songBGM_ext5 = new System.Windows.Forms.TextBox();
+            this.textBox_songBGM_ext2 = new System.Windows.Forms.TextBox();
+            this.textBox_songBGM_ext1 = new System.Windows.Forms.TextBox();
             this.checkBox_beginner = new System.Windows.Forms.CheckBox();
             this.checkBox_unlocked = new System.Windows.Forms.CheckBox();
             this.label15 = new System.Windows.Forms.Label();
@@ -103,6 +112,8 @@
             this.textBox_songName1 = new System.Windows.Forms.TextBox();
             this.button_songDelete = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -139,16 +150,13 @@
             this.comboBox_SystemStageParam = new System.Windows.Forms.ComboBox();
             this.label_songsLoaded = new System.Windows.Forms.Label();
             this.button_about = new System.Windows.Forms.Button();
-            this.textBox_songBGM_ext1 = new System.Windows.Forms.TextBox();
-            this.textBox_songBGM_ext2 = new System.Windows.Forms.TextBox();
-            this.textBox_songBGM_ext3 = new System.Windows.Forms.TextBox();
-            this.textBox_songBGM_ext4 = new System.Windows.Forms.TextBox();
-            this.textBox_songBGM_ext5 = new System.Windows.Forms.TextBox();
-            this.textBox_songBGM_ext6 = new System.Windows.Forms.TextBox();
-            this.textBox_songBGM_ext7 = new System.Windows.Forms.TextBox();
-            this.textBox_songBGM_ext8 = new System.Windows.Forms.TextBox();
-            this.label22 = new System.Windows.Forms.Label();
-            this.label23 = new System.Windows.Forms.Label();
+            this.button_update_stageparam = new System.Windows.Forms.Button();
+            this.button_createSong = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label24 = new System.Windows.Forms.Label();
+            this.textBox_previewStart = new System.Windows.Forms.TextBox();
+            this.label25 = new System.Windows.Forms.Label();
+            this.textBox_previewEnd = new System.Windows.Forms.TextBox();
             this.statusStrip1.SuspendLayout();
             this.groupBox_StageEditor.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -173,6 +181,7 @@
             this.panel7.SuspendLayout();
             this.panel8.SuspendLayout();
             this.panel9.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // listBox_StageParam
@@ -180,7 +189,7 @@
             this.listBox_StageParam.FormattingEnabled = true;
             this.listBox_StageParam.Location = new System.Drawing.Point(12, 89);
             this.listBox_StageParam.Name = "listBox_StageParam";
-            this.listBox_StageParam.Size = new System.Drawing.Size(137, 342);
+            this.listBox_StageParam.Size = new System.Drawing.Size(137, 277);
             this.listBox_StageParam.TabIndex = 2;
             this.listBox_StageParam.Click += new System.EventHandler(this.listBox_StageParam_Click);
             this.listBox_StageParam.SelectedIndexChanged += new System.EventHandler(this.listBox_StageParam_SelectedIndexChanged);
@@ -303,31 +312,29 @@
             // 
             // button_Convert
             // 
-            this.button_Convert.Location = new System.Drawing.Point(397, 251);
+            this.button_Convert.Location = new System.Drawing.Point(433, 241);
             this.button_Convert.Name = "button_Convert";
-            this.button_Convert.Size = new System.Drawing.Size(276, 28);
+            this.button_Convert.Size = new System.Drawing.Size(240, 38);
             this.button_Convert.TabIndex = 15;
-            this.button_Convert.Text = "Convert selected Stage Files";
+            this.button_Convert.Text = "Convert Stage/Audio Files";
             this.button_Convert.UseVisualStyleBackColor = true;
             this.button_Convert.Click += new System.EventHandler(this.button_ConvertUpdate_Click);
             // 
             // button_onlyStageParam
             // 
-            this.button_onlyStageParam.Enabled = false;
-            this.button_onlyStageParam.Location = new System.Drawing.Point(611, 217);
+            this.button_onlyStageParam.Location = new System.Drawing.Point(433, 197);
             this.button_onlyStageParam.Name = "button_onlyStageParam";
-            this.button_onlyStageParam.Size = new System.Drawing.Size(62, 28);
+            this.button_onlyStageParam.Size = new System.Drawing.Size(240, 38);
             this.button_onlyStageParam.TabIndex = 15;
             this.button_onlyStageParam.Text = "Update Stage Param";
             this.button_onlyStageParam.UseVisualStyleBackColor = true;
-            this.button_onlyStageParam.Visible = false;
             this.button_onlyStageParam.Click += new System.EventHandler(this.button_ConvertUpdate_Click);
             // 
             // button_ConvertUpdate
             // 
-            this.button_ConvertUpdate.Location = new System.Drawing.Point(397, 285);
+            this.button_ConvertUpdate.Location = new System.Drawing.Point(433, 285);
             this.button_ConvertUpdate.Name = "button_ConvertUpdate";
-            this.button_ConvertUpdate.Size = new System.Drawing.Size(276, 62);
+            this.button_ConvertUpdate.Size = new System.Drawing.Size(240, 62);
             this.button_ConvertUpdate.TabIndex = 14;
             this.button_ConvertUpdate.Text = "Convert files and Update Stage Param";
             this.button_ConvertUpdate.UseVisualStyleBackColor = true;
@@ -480,9 +487,9 @@
             // 
             // button_Update
             // 
-            this.button_Update.Location = new System.Drawing.Point(409, 338);
+            this.button_Update.Location = new System.Drawing.Point(486, 338);
             this.button_Update.Name = "button_Update";
-            this.button_Update.Size = new System.Drawing.Size(276, 28);
+            this.button_Update.Size = new System.Drawing.Size(199, 28);
             this.button_Update.TabIndex = 17;
             this.button_Update.Text = "Update Song";
             this.button_Update.UseVisualStyleBackColor = true;
@@ -578,7 +585,9 @@
             // tab_SongEditor
             // 
             this.tab_SongEditor.AutoScroll = true;
+            this.tab_SongEditor.Controls.Add(this.groupBox1);
             this.tab_SongEditor.Controls.Add(this.textBox_songBGM_ext8);
+            this.tab_SongEditor.Controls.Add(this.checkBox_DLC_Switch);
             this.tab_SongEditor.Controls.Add(this.textBox_songBGM_ext7);
             this.tab_SongEditor.Controls.Add(this.textBox_songBGM_ext4);
             this.tab_SongEditor.Controls.Add(this.textBox_songBGM_ext6);
@@ -639,6 +648,77 @@
             this.tab_SongEditor.UseVisualStyleBackColor = true;
             this.tab_SongEditor.Click += new System.EventHandler(this.tab_SongEditor_Click);
             // 
+            // textBox_songBGM_ext8
+            // 
+            this.textBox_songBGM_ext8.Location = new System.Drawing.Point(602, 187);
+            this.textBox_songBGM_ext8.Name = "textBox_songBGM_ext8";
+            this.textBox_songBGM_ext8.Size = new System.Drawing.Size(74, 20);
+            this.textBox_songBGM_ext8.TabIndex = 31;
+            this.textBox_songBGM_ext8.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
+            // 
+            // checkBox_DLC_Switch
+            // 
+            this.checkBox_DLC_Switch.AutoSize = true;
+            this.checkBox_DLC_Switch.Location = new System.Drawing.Point(92, 190);
+            this.checkBox_DLC_Switch.Name = "checkBox_DLC_Switch";
+            this.checkBox_DLC_Switch.Size = new System.Drawing.Size(47, 17);
+            this.checkBox_DLC_Switch.TabIndex = 22;
+            this.checkBox_DLC_Switch.Text = "DLC";
+            this.checkBox_DLC_Switch.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.checkBox_DLC_Switch.UseVisualStyleBackColor = true;
+            this.checkBox_DLC_Switch.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
+            // textBox_songBGM_ext7
+            // 
+            this.textBox_songBGM_ext7.Location = new System.Drawing.Point(522, 187);
+            this.textBox_songBGM_ext7.Name = "textBox_songBGM_ext7";
+            this.textBox_songBGM_ext7.Size = new System.Drawing.Size(74, 20);
+            this.textBox_songBGM_ext7.TabIndex = 31;
+            this.textBox_songBGM_ext7.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
+            // 
+            // textBox_songBGM_ext4
+            // 
+            this.textBox_songBGM_ext4.Location = new System.Drawing.Point(602, 161);
+            this.textBox_songBGM_ext4.Name = "textBox_songBGM_ext4";
+            this.textBox_songBGM_ext4.Size = new System.Drawing.Size(74, 20);
+            this.textBox_songBGM_ext4.TabIndex = 31;
+            this.textBox_songBGM_ext4.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
+            // 
+            // textBox_songBGM_ext6
+            // 
+            this.textBox_songBGM_ext6.Location = new System.Drawing.Point(442, 187);
+            this.textBox_songBGM_ext6.Name = "textBox_songBGM_ext6";
+            this.textBox_songBGM_ext6.Size = new System.Drawing.Size(74, 20);
+            this.textBox_songBGM_ext6.TabIndex = 30;
+            // 
+            // textBox_songBGM_ext3
+            // 
+            this.textBox_songBGM_ext3.Location = new System.Drawing.Point(522, 161);
+            this.textBox_songBGM_ext3.Name = "textBox_songBGM_ext3";
+            this.textBox_songBGM_ext3.Size = new System.Drawing.Size(74, 20);
+            this.textBox_songBGM_ext3.TabIndex = 30;
+            // 
+            // textBox_songBGM_ext5
+            // 
+            this.textBox_songBGM_ext5.Location = new System.Drawing.Point(362, 187);
+            this.textBox_songBGM_ext5.Name = "textBox_songBGM_ext5";
+            this.textBox_songBGM_ext5.Size = new System.Drawing.Size(74, 20);
+            this.textBox_songBGM_ext5.TabIndex = 29;
+            // 
+            // textBox_songBGM_ext2
+            // 
+            this.textBox_songBGM_ext2.Location = new System.Drawing.Point(442, 161);
+            this.textBox_songBGM_ext2.Name = "textBox_songBGM_ext2";
+            this.textBox_songBGM_ext2.Size = new System.Drawing.Size(74, 20);
+            this.textBox_songBGM_ext2.TabIndex = 29;
+            // 
+            // textBox_songBGM_ext1
+            // 
+            this.textBox_songBGM_ext1.Location = new System.Drawing.Point(362, 161);
+            this.textBox_songBGM_ext1.Name = "textBox_songBGM_ext1";
+            this.textBox_songBGM_ext1.Size = new System.Drawing.Size(74, 20);
+            this.textBox_songBGM_ext1.TabIndex = 28;
+            // 
             // checkBox_beginner
             // 
             this.checkBox_beginner.AutoSize = true;
@@ -658,6 +738,7 @@
             this.checkBox_unlocked.TabIndex = 27;
             this.checkBox_unlocked.Text = "Unlocked";
             this.checkBox_unlocked.UseVisualStyleBackColor = true;
+            this.checkBox_unlocked.CheckedChanged += new System.EventHandler(this.checkBox_unlocked_CheckedChanged);
             // 
             // label15
             // 
@@ -862,9 +943,9 @@
             // 
             // button_songDelete
             // 
-            this.button_songDelete.Location = new System.Drawing.Point(239, 338);
+            this.button_songDelete.Location = new System.Drawing.Point(362, 338);
             this.button_songDelete.Name = "button_songDelete";
-            this.button_songDelete.Size = new System.Drawing.Size(164, 28);
+            this.button_songDelete.Size = new System.Drawing.Size(117, 28);
             this.button_songDelete.TabIndex = 17;
             this.button_songDelete.Text = "Delete Song";
             this.button_songDelete.UseVisualStyleBackColor = true;
@@ -878,6 +959,26 @@
             this.label10.Size = new System.Drawing.Size(58, 13);
             this.label10.TabIndex = 6;
             this.label10.Text = "Difficulties:";
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(367, 210);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(284, 13);
+            this.label23.TabIndex = 6;
+            this.label23.Text = "       Easy                 Normal                 Hard                 Extra";
+            this.label23.Click += new System.EventHandler(this.label22_Click);
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(307, 168);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(49, 13);
+            this.label22.TabIndex = 6;
+            this.label22.Text = "BGM Alt:";
+            this.label22.Click += new System.EventHandler(this.label22_Click);
             // 
             // label12
             // 
@@ -995,7 +1096,7 @@
             this.tab_StageParamConverter.Name = "tab_StageParamConverter";
             this.tab_StageParamConverter.Size = new System.Drawing.Size(691, 372);
             this.tab_StageParamConverter.TabIndex = 3;
-            this.tab_StageParamConverter.Text = "Stage Param Converter";
+            this.tab_StageParamConverter.Text = "Stage Param Converter (EXPERIMENTAL)";
             this.tab_StageParamConverter.UseVisualStyleBackColor = true;
             // 
             // button_ALL_convertSP
@@ -1194,7 +1295,7 @@
             // 
             // button_LoadStageParam
             // 
-            this.button_LoadStageParam.Location = new System.Drawing.Point(506, 30);
+            this.button_LoadStageParam.Location = new System.Drawing.Point(598, 28);
             this.button_LoadStageParam.Name = "button_LoadStageParam";
             this.button_LoadStageParam.Size = new System.Drawing.Size(134, 23);
             this.button_LoadStageParam.TabIndex = 19;
@@ -1208,19 +1309,19 @@
             this.comboBox_SystemStageParam.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox_SystemStageParam.FormattingEnabled = true;
             this.comboBox_SystemStageParam.Items.AddRange(new object[] {
-            "AC GC4EX",
+            "AC GC3/GC4",
             "AC GC2",
             "Switch"});
             this.comboBox_SystemStageParam.Location = new System.Drawing.Point(400, 30);
             this.comboBox_SystemStageParam.Name = "comboBox_SystemStageParam";
-            this.comboBox_SystemStageParam.Size = new System.Drawing.Size(100, 21);
+            this.comboBox_SystemStageParam.Size = new System.Drawing.Size(136, 21);
             this.comboBox_SystemStageParam.TabIndex = 20;
             this.comboBox_SystemStageParam.SelectedIndexChanged += new System.EventHandler(this.comboBox_SystemStageParam_SelectedIndexChanged);
             // 
             // label_songsLoaded
             // 
             this.label_songsLoaded.AutoSize = true;
-            this.label_songsLoaded.Location = new System.Drawing.Point(9, 440);
+            this.label_songsLoaded.Location = new System.Drawing.Point(9, 372);
             this.label_songsLoaded.Name = "label_songsLoaded";
             this.label_songsLoaded.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.label_songsLoaded.Size = new System.Drawing.Size(52, 13);
@@ -1237,84 +1338,74 @@
             this.button_about.UseVisualStyleBackColor = true;
             this.button_about.Click += new System.EventHandler(this.button_about_Click);
             // 
-            // textBox_songBGM_ext1
+            // button_update_stageparam
             // 
-            this.textBox_songBGM_ext1.Location = new System.Drawing.Point(362, 161);
-            this.textBox_songBGM_ext1.Name = "textBox_songBGM_ext1";
-            this.textBox_songBGM_ext1.Size = new System.Drawing.Size(74, 20);
-            this.textBox_songBGM_ext1.TabIndex = 28;
+            this.button_update_stageparam.Location = new System.Drawing.Point(12, 426);
+            this.button_update_stageparam.Name = "button_update_stageparam";
+            this.button_update_stageparam.Size = new System.Drawing.Size(137, 39);
+            this.button_update_stageparam.TabIndex = 32;
+            this.button_update_stageparam.Text = "(SWITCH) \r\nUpdate to 1.0.10";
+            this.button_update_stageparam.UseVisualStyleBackColor = true;
+            this.button_update_stageparam.Click += new System.EventHandler(this.button1_Click);
             // 
-            // textBox_songBGM_ext2
+            // button_createSong
             // 
-            this.textBox_songBGM_ext2.Location = new System.Drawing.Point(442, 161);
-            this.textBox_songBGM_ext2.Name = "textBox_songBGM_ext2";
-            this.textBox_songBGM_ext2.Size = new System.Drawing.Size(74, 20);
-            this.textBox_songBGM_ext2.TabIndex = 29;
+            this.button_createSong.Location = new System.Drawing.Point(12, 388);
+            this.button_createSong.Name = "button_createSong";
+            this.button_createSong.Size = new System.Drawing.Size(137, 28);
+            this.button_createSong.TabIndex = 32;
+            this.button_createSong.Text = "New Song";
+            this.button_createSong.UseVisualStyleBackColor = true;
+            this.button_createSong.Click += new System.EventHandler(this.button_createSong_Click);
             // 
-            // textBox_songBGM_ext3
+            // groupBox1
             // 
-            this.textBox_songBGM_ext3.Location = new System.Drawing.Point(522, 161);
-            this.textBox_songBGM_ext3.Name = "textBox_songBGM_ext3";
-            this.textBox_songBGM_ext3.Size = new System.Drawing.Size(74, 20);
-            this.textBox_songBGM_ext3.TabIndex = 30;
+            this.groupBox1.Controls.Add(this.textBox_previewEnd);
+            this.groupBox1.Controls.Add(this.label25);
+            this.groupBox1.Controls.Add(this.textBox_previewStart);
+            this.groupBox1.Controls.Add(this.label24);
+            this.groupBox1.Location = new System.Drawing.Point(151, 190);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(187, 71);
+            this.groupBox1.TabIndex = 32;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Preview (in ms)";
             // 
-            // textBox_songBGM_ext4
+            // label24
             // 
-            this.textBox_songBGM_ext4.Location = new System.Drawing.Point(602, 161);
-            this.textBox_songBGM_ext4.Name = "textBox_songBGM_ext4";
-            this.textBox_songBGM_ext4.Size = new System.Drawing.Size(74, 20);
-            this.textBox_songBGM_ext4.TabIndex = 31;
-            this.textBox_songBGM_ext4.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(39, 23);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(32, 13);
+            this.label24.TabIndex = 4;
+            this.label24.Text = "Start:";
+            this.label24.Click += new System.EventHandler(this.label_ID_Click);
             // 
-            // textBox_songBGM_ext5
+            // textBox_previewStart
             // 
-            this.textBox_songBGM_ext5.Location = new System.Drawing.Point(362, 187);
-            this.textBox_songBGM_ext5.Name = "textBox_songBGM_ext5";
-            this.textBox_songBGM_ext5.Size = new System.Drawing.Size(74, 20);
-            this.textBox_songBGM_ext5.TabIndex = 29;
+            this.textBox_previewStart.Location = new System.Drawing.Point(81, 20);
+            this.textBox_previewStart.Name = "textBox_previewStart";
+            this.textBox_previewStart.Size = new System.Drawing.Size(100, 20);
+            this.textBox_previewStart.TabIndex = 5;
+            this.textBox_previewStart.TextChanged += new System.EventHandler(this.textBox_ID_TextChanged);
             // 
-            // textBox_songBGM_ext6
+            // label25
             // 
-            this.textBox_songBGM_ext6.Location = new System.Drawing.Point(442, 187);
-            this.textBox_songBGM_ext6.Name = "textBox_songBGM_ext6";
-            this.textBox_songBGM_ext6.Size = new System.Drawing.Size(74, 20);
-            this.textBox_songBGM_ext6.TabIndex = 30;
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(39, 49);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(29, 13);
+            this.label25.TabIndex = 4;
+            this.label25.Text = "End:";
+            this.label25.Click += new System.EventHandler(this.label_ID_Click);
             // 
-            // textBox_songBGM_ext7
+            // textBox_previewEnd
             // 
-            this.textBox_songBGM_ext7.Location = new System.Drawing.Point(522, 187);
-            this.textBox_songBGM_ext7.Name = "textBox_songBGM_ext7";
-            this.textBox_songBGM_ext7.Size = new System.Drawing.Size(74, 20);
-            this.textBox_songBGM_ext7.TabIndex = 31;
-            this.textBox_songBGM_ext7.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
-            // 
-            // textBox_songBGM_ext8
-            // 
-            this.textBox_songBGM_ext8.Location = new System.Drawing.Point(602, 187);
-            this.textBox_songBGM_ext8.Name = "textBox_songBGM_ext8";
-            this.textBox_songBGM_ext8.Size = new System.Drawing.Size(74, 20);
-            this.textBox_songBGM_ext8.TabIndex = 31;
-            this.textBox_songBGM_ext8.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(307, 168);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(49, 13);
-            this.label22.TabIndex = 6;
-            this.label22.Text = "BGM Alt:";
-            this.label22.Click += new System.EventHandler(this.label22_Click);
-            // 
-            // label23
-            // 
-            this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(367, 210);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(284, 13);
-            this.label23.TabIndex = 6;
-            this.label23.Text = "       Easy                 Normal                 Hard                 Extra";
-            this.label23.Click += new System.EventHandler(this.label22_Click);
+            this.textBox_previewEnd.Location = new System.Drawing.Point(81, 46);
+            this.textBox_previewEnd.Name = "textBox_previewEnd";
+            this.textBox_previewEnd.Size = new System.Drawing.Size(100, 20);
+            this.textBox_previewEnd.TabIndex = 5;
+            this.textBox_previewEnd.TextChanged += new System.EventHandler(this.textBox_ID_TextChanged);
             // 
             // Form_GCC
             // 
@@ -1323,6 +1414,8 @@
             this.AutoSize = true;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(867, 490);
+            this.Controls.Add(this.button_createSong);
+            this.Controls.Add(this.button_update_stageparam);
             this.Controls.Add(this.button_about);
             this.Controls.Add(this.comboBox_SystemStageParam);
             this.Controls.Add(this.button_LoadStageParam);
@@ -1380,6 +1473,8 @@
             this.panel8.PerformLayout();
             this.panel9.ResumeLayout(false);
             this.panel9.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1506,6 +1601,14 @@
         public System.Windows.Forms.TextBox textBox_songBGM_ext8;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Label label23;
+        public System.Windows.Forms.CheckBox checkBox_DLC_Switch;
+        private System.Windows.Forms.Button button_update_stageparam;
+        private System.Windows.Forms.Button button_createSong;
+        private System.Windows.Forms.GroupBox groupBox1;
+        public System.Windows.Forms.TextBox textBox_previewEnd;
+        private System.Windows.Forms.Label label25;
+        public System.Windows.Forms.TextBox textBox_previewStart;
+        private System.Windows.Forms.Label label24;
     }
 }
 

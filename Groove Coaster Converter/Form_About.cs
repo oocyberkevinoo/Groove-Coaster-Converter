@@ -38,5 +38,10 @@ namespace Groove_Coaster_Converter
         {
             DarkUI.Dark(this);
         }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

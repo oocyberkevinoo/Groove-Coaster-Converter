@@ -15,7 +15,7 @@ namespace Groove_Coaster_Converter.Programs
 
         Form_GCC form_GCC = Application.OpenForms["Form_GCC"] as Form_GCC;
 
-        public void Conversion(bool stageParam, bool convert, int platform = 0, bool onlyDatabase=false)
+        public void Conversion(bool stageParam, bool convert, int platform = 0, bool onlyDatabase=false, bool onlyFiles=false)
         {
             Program.songDatas.Clear();
             Program.songFile = "";
@@ -42,7 +42,7 @@ namespace Groove_Coaster_Converter.Programs
             String destinationFolder = form_GCC.textBox_output.Text;
             bool merged = false;
 
-            if (!onlyDatabase)
+            if (!stageParam)
             {
                 if (songFile.Length > 0 && convert)
                 {
@@ -77,7 +77,7 @@ namespace Groove_Coaster_Converter.Programs
             if (songFolder.Length > 0 && convert)
             {
                 
-                if (!onlyDatabase)
+                if (!stageParam)
                 {
                     try
                     {
@@ -94,9 +94,7 @@ namespace Groove_Coaster_Converter.Programs
                    
 
                 }
-                
-                
-                if (stageParam)
+                else
                 {
                     try
                     {
